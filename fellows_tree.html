@@ -457,6 +457,15 @@
     <button class="filter-chip" data-group="setting" data-value="private">Private Practice</button>
   </div>
   <div class="filter-row">
+    <span class="filter-label">Region</span>
+    <button class="filter-chip" data-group="region" data-value="newengland">New England</button>
+    <button class="filter-chip" data-group="region" data-value="midatlantic">Mid-Atlantic</button>
+    <button class="filter-chip" data-group="region" data-value="south">South</button>
+    <button class="filter-chip" data-group="region" data-value="midwest">Midwest</button>
+    <button class="filter-chip" data-group="region" data-value="west">West / Pacific</button>
+    <button class="filter-chip" data-group="region" data-value="international">International</button>
+  </div>
+  <div class="filter-row">
     <span class="filter-label"></span>
     <button id="filter-reset">Reset all filters</button>
     <span id="filter-count" style="font-size:0.8rem;color:#6b7d8e;font-family:system-ui,sans-serif;"></span>
@@ -891,7 +900,29 @@ document.addEventListener('click', e => {
 });
 
 // ── Filter chips ──────────────────────────────────────────────────────────────
-const activeFilters = { era: new Set(), decade: new Set(), setting: new Set() };
+const activeFilters = { era: new Set(), decade: new Set(), setting: new Set(), region: new Set() };
+
+const STATE_REGION = {
+  MA:'newengland', ME:'newengland', VT:'newengland', NH:'newengland', CT:'newengland', RI:'newengland',
+  NY:'midatlantic', NJ:'midatlantic', PA:'midatlantic', MD:'midatlantic', DC:'midatlantic', VA:'midatlantic', DE:'midatlantic',
+  NC:'south', TX:'south', FL:'south', GA:'south', TN:'south', SC:'south', AL:'south', MS:'south', LA:'south', AR:'south', WV:'south', KY:'south',
+  OH:'midwest', IL:'midwest', MI:'midwest', IN:'midwest', MO:'midwest', MN:'midwest', WI:'midwest', IA:'midwest', KS:'midwest', NE:'midwest', ND:'midwest', SD:'midwest', OK:'midwest',
+  CA:'west', HI:'west', UT:'west', NM:'west', CO:'west', AZ:'west', OR:'west', WA:'west', NV:'west', ID:'west', MT:'west', WY:'west', AK:'west',
+};
+const INTL_KEYWORDS = ['international','israel','canada','chile','pakistan','abu dhabi','philippines','norway'];
+
+function personRegion(p) {
+  const loc = (p.location || '').toLowerCase();
+  if (!loc) return null;
+  if (INTL_KEYWORDS.some(k => loc.includes(k))) return 'international';
+  const stateMatch = p.location.match(/\b([A-Z]{2})\b(?![\w])/g);
+  if (stateMatch) {
+    for (const s of stateMatch) {
+      if (STATE_REGION[s]) return STATE_REGION[s];
+    }
+  }
+  return null;
+}
 
 function personEra(p) {
   if (p.supervisor === 1) return 'robb';
@@ -931,6 +962,7 @@ function personMatchesChipFilters(p) {
     if (group === 'era') val = personEra(p);
     else if (group === 'decade') val = personDecade(p);
     else if (group === 'setting') val = personSetting(p);
+    else if (group === 'region') val = personRegion(p);
     // null means "no data for this group" — exclude if filter is active
     if (val === null || !active.has(val)) return false;
   }
