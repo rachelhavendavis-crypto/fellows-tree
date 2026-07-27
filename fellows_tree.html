@@ -40,6 +40,13 @@
     background: #fafaf7;
     color: #1c2b3a;
   }
+  #search-bar .search-hint {
+    font-size: 0.72rem;
+    color: #6b7d8e;
+    font-family: system-ui, sans-serif;
+    text-align: center;
+    margin-top: 5px;
+  }
   #search-bar input:focus { border-color: #003087; box-shadow: 0 0 0 3px rgba(27,50,82,0.12); }
 
   #search-results {
@@ -343,7 +350,7 @@
 </header>
 
 <div id="search-bar">
-  <input type="text" id="search-input" placeholder="Search by name..." autocomplete="off">
+  <input type="text" id="search-input" placeholder="Search by name, location, year, role..." autocomplete="off">
 </div>
 <div id="search-results"></div>
 
@@ -732,7 +739,9 @@ const searchResults = document.getElementById('search-results');
 searchInput.addEventListener('input', () => {
   const q = searchInput.value.trim().toLowerCase();
   if (!q) { searchResults.style.display = 'none'; return; }
-  const matches = people.filter(p => p.name.toLowerCase().includes(q)).slice(0, 12);
+  const matches = people.filter(p =>
+    [p.name, p.location, p.years, p.role, p.note].some(field => field && field.toLowerCase().includes(q))
+  ).slice(0, 12);
   if (!matches.length) { searchResults.style.display = 'none'; return; }
   searchResults.innerHTML = '';
   matches.forEach(p => {
