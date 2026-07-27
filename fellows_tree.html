@@ -47,6 +47,27 @@
     text-align: center;
     margin-top: 5px;
   }
+  #clear-search {
+    display: none;
+    background: #003087;
+    color: white;
+    border: none;
+    border-radius: 14px;
+    padding: 6px 14px;
+    font-size: 0.8rem;
+    font-family: system-ui, sans-serif;
+    cursor: pointer;
+    margin-left: 8px;
+    white-space: nowrap;
+  }
+  #clear-search:hover { background: #0072CE; }
+  #search-count {
+    font-size: 0.8rem;
+    color: #6b7d8e;
+    font-family: system-ui, sans-serif;
+    margin-left: 10px;
+    white-space: nowrap;
+  }
   #search-bar input:focus { border-color: #003087; box-shadow: 0 0 0 3px rgba(27,50,82,0.12); }
 
   #search-results {
@@ -349,8 +370,10 @@
   <p>Fellowship Family Tree</p>
 </header>
 
-<div id="search-bar">
-  <input type="text" id="search-input" placeholder="Search by name, location, year, role..." autocomplete="off">
+<div id="search-bar" style="display:flex;align-items:center;flex-wrap:wrap;gap:6px;">
+  <input type="text" id="search-input" placeholder="Search by name, location, year, role... (press Enter to filter)" autocomplete="off" style="flex:1;min-width:200px;">
+  <button id="clear-search" onclick="clearFilter()">✕ Clear</button>
+  <span id="search-count"></span>
 </div>
 <div id="search-results"></div>
 
@@ -735,16 +758,62 @@ function makeLineageCard(person) {
 // Search
 const searchInput = document.getElementById('search-input');
 const searchResults = document.getElementById('search-results');
+const clearBtn = document.getElementById('clear-search');
+const searchCount = document.getElementById('search-count');
+
+function matches(p, q) {
+  return [p.name, p.location, p.years, p.role, p.note].some(f => f && f.toLowerCase().includes(q));
+}
+
+function applyFilter(q) {
+  searchResults.style.display = 'none';
+  const sections = document.querySelectorAll('.era-section');
+  if (!q) {
+    sections.forEach(s => s.style.display = '');
+    document.querySelectorAll('.person-card').forEach(c => c.style.display = '');
+    clearBtn.style.display = 'none';
+    searchCount.textContent = '';
+    return;
+  }
+  let total = 0;
+  sections.forEach(section => {
+    const cards = section.querySelectorAll('.person-card');
+    let visible = 0;
+    cards.forEach(card => {
+      const id = parseInt(card.dataset.id);
+      const p = byId[id];
+      if (p && matches(p, q)) { card.style.display = ''; visible++; }
+      else card.style.display = 'none';
+    });
+    section.style.display = visible ? '' : 'none';
+    total += visible;
+  });
+  clearBtn.style.display = 'inline-block';
+  searchCount.textContent = total + ' result' + (total !== 1 ? 's' : '');
+}
+
+function clearFilter() {
+  searchInput.value = '';
+  applyFilter('');
+}
+
+searchInput.addEventListener('keydown', e => {
+  if (e.key === 'Enter') {
+    const q = searchInput.value.trim().toLowerCase();
+    applyFilter(q);
+    searchInput.blur();
+  } else if (e.key === 'Escape') {
+    clearFilter();
+  }
+});
 
 searchInput.addEventListener('input', () => {
   const q = searchInput.value.trim().toLowerCase();
   if (!q) { searchResults.style.display = 'none'; return; }
-  const matches = people.filter(p =>
-    [p.name, p.location, p.years, p.role, p.note].some(field => field && field.toLowerCase().includes(q))
-  ).slice(0, 12);
-  if (!matches.length) { searchResults.style.display = 'none'; return; }
+  const hits = people.filter(p => matches(p, q)).slice(0, 12);
+  if (!hits.length) { searchResults.style.display = 'none'; return; }
   searchResults.innerHTML = '';
-  matches.forEach(p => {
+  hits.forEach(p => {
     const item = document.createElement('div');
     item.className = 'search-result-item';
     item.appendChild(makeThumb(p, 'card-photo', 'card-photo-placeholder'));
