@@ -70,15 +70,31 @@
   }
   #search-bar input:focus { border-color: #003087; box-shadow: 0 0 0 3px rgba(27,50,82,0.12); }
 
+  /* Filter toggle button */
+  #filter-toggle {
+    background: #f0f4fa;
+    color: #003087;
+    border: 1.5px solid #c0d4e8;
+    border-radius: 20px;
+    padding: 5px 14px;
+    font-size: 0.8rem;
+    font-family: system-ui, sans-serif;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background 0.15s, border-color 0.15s;
+  }
+  #filter-toggle:hover, #filter-toggle.active { background: #003087; color: #fff; border-color: #003087; }
+
   /* Filter bar */
   #filter-bar {
     max-width: 1200px;
     margin: 0 auto 14px;
     padding: 0 24px;
-    display: flex;
+    display: none;
     flex-direction: column;
     gap: 8px;
   }
+  #filter-bar.open { display: flex; }
   .filter-row {
     display: flex;
     align-items: center;
@@ -428,6 +444,7 @@
 
 <div id="search-bar" style="display:flex;align-items:center;flex-wrap:wrap;gap:6px;">
   <input type="text" id="search-input" placeholder="Search by name, location, year, role... (press Enter to filter)" autocomplete="off" style="flex:1;min-width:200px;">
+  <button id="filter-toggle" onclick="toggleFilters()">⚙ Filters</button>
   <button id="clear-search" onclick="clearFilter()">✕ Clear</button>
   <span id="search-count"></span>
 </div>
@@ -1036,6 +1053,14 @@ document.querySelectorAll('.filter-chip').forEach(chip => {
     applyAllFilters();
   });
 });
+
+function toggleFilters() {
+  const bar = document.getElementById('filter-bar');
+  const btn = document.getElementById('filter-toggle');
+  const open = bar.classList.toggle('open');
+  btn.classList.toggle('active', open);
+  btn.textContent = open ? '✕ Hide Filters' : '⚙ Filters';
+}
 
 document.getElementById('filter-reset').addEventListener('click', () => {
   Object.values(activeFilters).forEach(s => s.clear());
