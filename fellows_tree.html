@@ -70,6 +70,62 @@
   }
   #search-bar input:focus { border-color: #003087; box-shadow: 0 0 0 3px rgba(27,50,82,0.12); }
 
+  /* Filter bar */
+  #filter-bar {
+    max-width: 1200px;
+    margin: 0 auto 14px;
+    padding: 0 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .filter-row {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .filter-label {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #003087;
+    font-family: system-ui, sans-serif;
+    white-space: nowrap;
+    min-width: 68px;
+  }
+  .filter-chip {
+    background: #f0f4fa;
+    color: #1c2b3a;
+    border: 1.5px solid #c0d4e8;
+    border-radius: 20px;
+    padding: 4px 13px;
+    font-size: 0.78rem;
+    font-family: system-ui, sans-serif;
+    cursor: pointer;
+    transition: background 0.15s, border-color 0.15s, color 0.15s;
+    white-space: nowrap;
+  }
+  .filter-chip:hover { border-color: #0072CE; background: #ddeaf8; }
+  .filter-chip.active {
+    background: #003087;
+    color: #fff;
+    border-color: #003087;
+  }
+  #filter-reset {
+    font-size: 0.75rem;
+    color: #0072CE;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: system-ui, sans-serif;
+    padding: 4px 8px;
+    text-decoration: underline;
+    display: none;
+  }
+  #filter-reset:hover { color: #003087; }
+
   #search-results {
     display: none;
     position: fixed;
@@ -376,6 +432,36 @@
   <span id="search-count"></span>
 </div>
 <div id="search-results"></div>
+
+<div id="filter-bar">
+  <div class="filter-row">
+    <span class="filter-label">Era</span>
+    <button class="filter-chip" data-group="era" data-value="robb">Robb Era (1973–2002)</button>
+    <button class="filter-chip" data-group="era" data-value="hunter">Hunter Era (2002–present)</button>
+    <button class="filter-chip" data-group="era" data-value="second">Second Generation</button>
+  </div>
+  <div class="filter-row">
+    <span class="filter-label">Decade</span>
+    <button class="filter-chip" data-group="decade" data-value="1970">1970s</button>
+    <button class="filter-chip" data-group="decade" data-value="1980">1980s</button>
+    <button class="filter-chip" data-group="decade" data-value="1990">1990s</button>
+    <button class="filter-chip" data-group="decade" data-value="2000">2000s</button>
+    <button class="filter-chip" data-group="decade" data-value="2010">2010s</button>
+    <button class="filter-chip" data-group="decade" data-value="2020">2020s</button>
+  </div>
+  <div class="filter-row">
+    <span class="filter-label">Setting</span>
+    <button class="filter-chip" data-group="setting" data-value="bch">At BCH</button>
+    <button class="filter-chip" data-group="setting" data-value="academic">Academic / Teaching Hospital</button>
+    <button class="filter-chip" data-group="setting" data-value="international">International</button>
+    <button class="filter-chip" data-group="setting" data-value="private">Private Practice</button>
+  </div>
+  <div class="filter-row">
+    <span class="filter-label"></span>
+    <button id="filter-reset">Reset all filters</button>
+    <span id="filter-count" style="font-size:0.8rem;color:#6b7d8e;font-family:system-ui,sans-serif;"></span>
+  </div>
+</div>
 
 <div id="page-body">
   <div id="grid-content"></div>
@@ -765,47 +851,6 @@ function matches(p, q) {
   return [p.name, p.location, p.years, p.role, p.note].some(f => f && f.toLowerCase().includes(q));
 }
 
-function applyFilter(q) {
-  searchResults.style.display = 'none';
-  const sections = document.querySelectorAll('.era-section');
-  if (!q) {
-    sections.forEach(s => s.style.display = '');
-    document.querySelectorAll('.person-card').forEach(c => c.style.display = '');
-    clearBtn.style.display = 'none';
-    searchCount.textContent = '';
-    return;
-  }
-  let total = 0;
-  sections.forEach(section => {
-    const cards = section.querySelectorAll('.person-card');
-    let visible = 0;
-    cards.forEach(card => {
-      const id = parseInt(card.dataset.id);
-      const p = byId[id];
-      if (p && matches(p, q)) { card.style.display = ''; visible++; }
-      else card.style.display = 'none';
-    });
-    section.style.display = visible ? '' : 'none';
-    total += visible;
-  });
-  clearBtn.style.display = 'inline-block';
-  searchCount.textContent = total + ' result' + (total !== 1 ? 's' : '');
-}
-
-function clearFilter() {
-  searchInput.value = '';
-  applyFilter('');
-}
-
-searchInput.addEventListener('keydown', e => {
-  if (e.key === 'Enter') {
-    const q = searchInput.value.trim().toLowerCase();
-    applyFilter(q);
-    searchInput.blur();
-  } else if (e.key === 'Escape') {
-    clearFilter();
-  }
-});
 
 searchInput.addEventListener('input', () => {
   const q = searchInput.value.trim().toLowerCase();
@@ -843,6 +888,127 @@ document.addEventListener('click', e => {
   if (!searchResults.contains(e.target) && e.target !== searchInput) {
     searchResults.style.display = 'none';
   }
+});
+
+// ── Filter chips ──────────────────────────────────────────────────────────────
+const activeFilters = { era: new Set(), decade: new Set(), setting: new Set() };
+
+function personEra(p) {
+  if (p.supervisor === 1) return 'robb';
+  if (p.supervisor === 3) return 'hunter';
+  if (p.supervisor !== null) return 'second';
+  return null; // Program Leadership — always visible
+}
+
+function personDecade(p) {
+  const m = (p.years || '').match(/\d{4}/);
+  if (!m) return null;
+  return String(Math.floor(parseInt(m[0]) / 10) * 10);
+}
+
+function personSetting(p) {
+  const loc = (p.location || '').toLowerCase();
+  if (!loc) return null;
+  if (loc.includes('bch') || loc.includes('300 longwood') || loc.includes('423 charles')) return 'bch';
+  if (loc.includes('international') || loc.includes('israel') || loc.includes('canada') ||
+      loc.includes('chile') || loc.includes('pakistan') || loc.includes('abu dhabi') ||
+      loc.includes('philippines')) return 'international';
+  if (loc.includes('university') || loc.includes('hospital') || loc.includes('institute') ||
+      loc.includes('center') || loc.includes('clinic') || loc.includes('duke') ||
+      loc.includes('stanford') || loc.includes('ucsf') || loc.includes('wilmer') ||
+      loc.includes('moran') || loc.includes('rady') || loc.includes('laboratory') ||
+      loc.includes('weill') || loc.includes('berman')) return 'academic';
+  return 'private';
+}
+
+function personMatchesChipFilters(p) {
+  // Program Leadership: always show regardless of chip filters
+  if (p.id <= 3) return true;
+
+  for (const [group, active] of Object.entries(activeFilters)) {
+    if (active.size === 0) continue;
+    let val;
+    if (group === 'era') val = personEra(p);
+    else if (group === 'decade') val = personDecade(p);
+    else if (group === 'setting') val = personSetting(p);
+    // null means "no data for this group" — exclude if filter is active
+    if (val === null || !active.has(val)) return false;
+  }
+  return true;
+}
+
+let currentSearchQuery = '';
+
+function applyAllFilters() {
+  const q = currentSearchQuery;
+  const chipActive = Object.values(activeFilters).some(s => s.size > 0);
+  const sections = document.querySelectorAll('.era-section');
+  let total = 0;
+
+  sections.forEach(section => {
+    const cards = section.querySelectorAll('.person-card');
+    let visible = 0;
+    cards.forEach(card => {
+      const id = parseInt(card.dataset.id);
+      const p = byId[id];
+      if (!p) return;
+      const matchesSearch = !q || matches(p, q);
+      const matchesChips = personMatchesChipFilters(p);
+      if (matchesSearch && matchesChips) { card.style.display = ''; visible++; }
+      else card.style.display = 'none';
+    });
+    section.style.display = visible ? '' : 'none';
+    total += visible;
+  });
+
+  // Update count & clear button
+  const anyFilter = q || chipActive;
+  clearBtn.style.display = q ? 'inline-block' : 'none';
+  searchCount.textContent = q ? total + ' result' + (total !== 1 ? 's' : '') : '';
+  document.getElementById('filter-reset').style.display = chipActive ? 'inline-block' : 'none';
+  document.getElementById('filter-count').textContent = chipActive
+    ? total + ' fellow' + (total !== 1 ? 's' : '') + ' shown'
+    : '';
+}
+
+// Rewire Enter search to use combined filter
+searchInput.addEventListener('keydown', e => {
+  if (e.key === 'Enter') {
+    currentSearchQuery = searchInput.value.trim().toLowerCase();
+    searchResults.style.display = 'none';
+    applyAllFilters();
+    searchInput.blur();
+  } else if (e.key === 'Escape') {
+    currentSearchQuery = '';
+    searchInput.value = '';
+    applyAllFilters();
+  }
+});
+
+function clearFilter() {
+  currentSearchQuery = '';
+  searchInput.value = '';
+  applyAllFilters();
+}
+
+document.querySelectorAll('.filter-chip').forEach(chip => {
+  chip.addEventListener('click', () => {
+    const { group, value } = chip.dataset;
+    if (activeFilters[group].has(value)) {
+      activeFilters[group].delete(value);
+      chip.classList.remove('active');
+    } else {
+      activeFilters[group].add(value);
+      chip.classList.add('active');
+    }
+    applyAllFilters();
+  });
+});
+
+document.getElementById('filter-reset').addEventListener('click', () => {
+  Object.values(activeFilters).forEach(s => s.clear());
+  document.querySelectorAll('.filter-chip.active').forEach(c => c.classList.remove('active'));
+  applyAllFilters();
 });
 </script>
 </body>
