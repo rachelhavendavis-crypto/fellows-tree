@@ -505,6 +505,7 @@
         <div class="modal-years" id="m-years"></div>
         <div class="modal-location" id="m-location"></div>
         <div class="modal-note" id="m-note"></div>
+        <a id="m-website" href="#" target="_blank" rel="noopener" style="display:none;margin-top:8px;font-size:0.8rem;color:#0072CE;font-family:system-ui,sans-serif;text-decoration:none;border:1.5px solid #0072CE;border-radius:20px;padding:4px 14px;white-space:nowrap;">🔗 View Profile</a>
       </div>
     </div>
     <div class="modal-body">
@@ -533,48 +534,48 @@ const people = [
   {id:11, name:"Walter M. Fierson, MD", years:"1978–1979", supervisor:1, role:"Boston Children's Hospital, Department of Ophthalmology Fellow", location:"1245 W. Huntington Drive, Suite 109, Arcadia, CA 91007", note:"", photo:"https://drive.google.com/file/d/169CXvnMytYfr0jylSpZ09k31eq73sog1/view?usp=sharing"},
   {id:12, name:"Linda K. Angell, MD", years:"1979–1980", supervisor:1, role:"Boston Children's Hospital, Department of Ophthalmology Fellow", location:"5262 East Hidden Lake Dr, East Lansing, MI 48823", note:"", photo:"https://drive.google.com/file/d/1P7RRDGtDQQrykRPgqjfn0p7G7O8IJsnB/view?usp=sharing"},
   {id:13, name:"Elbert H. Magoon, MD", years:"1979", supervisor:1, role:"Boston Children's Hospital, Department of Ophthalmology Fellow", location:"800 McKinley Avenue NW, Canton, OH 44703", note:"Jan–June 1979", photo:""},
-  {id:14, name:"John D. Wright, Jr., MD", years:"1980–1981", supervisor:1, role:"Boston Children's Hospital, Department of Ophthalmology Fellow", location:"University of North Carolina, Department of Ophthalmology, Chapel Hill, NC 27599", note:"", photo:""},
+  {id:14, name:"John D. Wright, Jr., MD", years:"1980–1981", supervisor:1, role:"Boston Children's Hospital, Department of Ophthalmology Fellow", location:"University of North Carolina, Department of Ophthalmology, Chapel Hill, NC 27599", note:"", photo:"https://doximity-res.cloudinary.com/images/f_auto,q_auto,t_public_profile_photo_320x320/g9rtrp5usi9jgcm2cb79/john-wright-md-chapel-hill-nc.jpg"},
   {id:15, name:"Mohamad S. Jaafar, MD", years:"1981–1982", supervisor:1, role:"Boston Children's Hospital, Department of Ophthalmology Fellow", location:"Children's National Medical Center, 111 Michigan Ave NW, Washington, DC", note:"", photo:"https://d132x6oi8ychic.cloudfront.net/higherlogic/directory/imagedisplay/7a29977b-796d-4292-bdb1-8486f73e5403/d98dc48d-cd22-4224-9f5b-feec67da6c9a/200/200/637518503938200000"},
   {id:16, name:"Lois E.H. Smith, MD, PhD", years:"1982–1983", supervisor:1, role:"Boston Children's Hospital, Department of Ophthalmology Fellow", location:"Boston Children's Hospital, 300 Longwood Ave, Boston, MA 02115", note:"", photo:"https://drive.google.com/file/d/1knUqbEc9hXN7TJ8DWqQq4dK-B6vUfL99/view?usp=sharing"},
-  {id:17, name:"Robert D. Gross, MD", years:"1983–1984", supervisor:1, role:"Boston Children's Hospital, Department of Ophthalmology Fellow", location:"13 Dukes Avenue, London, W4 2AA, UK", note:"", photo:""},
-  {id:18, name:"Marcia L. Hutcheon, MD", years:"1984–1985", supervisor:1, role:"Boston Children's Hospital, Department of Ophthalmology Fellow", location:"1395 Piccard Drive, Suite 105, Rockville, MD 20850", note:"", photo:""},
-  {id:19, name:"Stewart J. Turner, MD", years:"1985–1986", supervisor:1, role:"Boston Children's Hospital, Department of Ophthalmology Fellow", location:"99 U.S. Route 1 Bypass, Kittery, ME 03904", note:"", photo:""},
+  {id:17, name:"Robert D. Gross, MD", years:"1983–1984", supervisor:1, role:"Boston Children's Hospital, Department of Ophthalmology Fellow", location:"13 Dukes Avenue, London, W4 2AA, UK", note:"", photo:"https://sa1s3optim.patientpop.com/assets/production/practices/a341e3fa7c12aa602710c60ea5d25ad27d83c37f/images/2843350.png"},
+  {id:18, name:"Marcia L. Hutcheon, MD", years:"1984–1985", supervisor:1, role:"Boston Children's Hospital, Department of Ophthalmology Fellow", location:"1395 Piccard Drive, Suite 105, Rockville, MD 20850", note:"", photo:"http://hutchdoc.com/wp-content/uploads/2021/03/IMG_5385-scaled.jpg"},
+  {id:19, name:"Stewart J. Turner, MD", years:"1985–1986", supervisor:1, role:"Boston Children's Hospital, Department of Ophthalmology Fellow", location:"99 U.S. Route 1 Bypass, Kittery, ME 03904", note:"", photo:"https://doximity-res.cloudinary.com/images/f_auto,q_auto,t_public_profile_photo_320x320/n3z17ijjoajpksaotfqp/stewart-turner-md-kittery-me.jpg"},
   {id:20, name:"Darren L. Hoover, MD", years:"1986–1987", supervisor:1, role:"Boston Children's Hospital, Department of Ophthalmology Fellow", location:"1835 Forbes Avenue, Pittsburgh, PA 15219", note:"", photo:""},
-  {id:21, name:"Steven J. Lichtenstein, MD", years:"1987–1988", supervisor:1, role:"Boston Children's Hospital, Department of Ophthalmology Fellow", location:"Illinois Eye Center, 8921 North Wood Sage Road, Peoria, IL 61615", note:"", photo:""},
+  {id:21, name:"Steven J. Lichtenstein, MD", years:"1987–1988", supervisor:1, role:"Boston Children's Hospital, Department of Ophthalmology Fellow", location:"Illinois Eye Center, 8921 North Wood Sage Road, Peoria, IL 61615", note:"", photo:"https://doximity-res.cloudinary.com/images/f_auto,q_auto,t_public_profile_photo_320x320/pz2nk8xthwfl4edgitqz/steven-lichtenstein-md-peoria-il.jpg"},
   {id:22, name:"Linda R. Dagi, MD", years:"1988–1989", supervisor:1, role:"Boston Children's Hospital, Department of Ophthalmology Fellow", location:"Boston Children's Hospital, 300 Longwood Ave, Boston, MA 02115", note:"", photo:"https://drive.google.com/file/d/19bKwsez4Mqz9iJOgf8NvJVCYF-9xw6LF/view?usp=sharing"},
-  {id:23, name:"Sharon F. Freedman, MD", years:"1989–1990", supervisor:1, role:"Boston Children's Hospital, Department of Ophthalmology Fellow", location:"Duke Eye Center, 2351 Erwin Road, Suite 4500, Durham, NC 27710", note:"", photo:""},
-  {id:24, name:"Douglas R. Fredrick, MD", years:"1990–1991", supervisor:1, role:"Boston Children's Hospital, Department of Ophthalmology Fellow", location:"Mount Sinai / NY Eye and Ear Infirmary, 17 E 102nd St, 8th Floor West, New York, NY 10029", note:"", photo:""},
+  {id:23, name:"Sharon F. Freedman, MD", years:"1989–1990", supervisor:1, role:"Boston Children's Hospital, Department of Ophthalmology Fellow", location:"Duke Eye Center, 2351 Erwin Road, Suite 4500, Durham, NC 27710", note:"", photo:"https://scholars.duke.edu/profile-images/full/0026454.jpg"},
+  {id:24, name:"Douglas R. Fredrick, MD", years:"1990–1991", supervisor:1, role:"Boston Children's Hospital, Department of Ophthalmology Fellow", location:"Mount Sinai / NY Eye and Ear Infirmary, 17 E 102nd St, 8th Floor West, New York, NY 10029", note:"", photo:"https://doximity-res.cloudinary.com/images/f_auto,q_auto,t_public_profile_photo_320x320/gocbwirxxvpgx6nlkts5/douglas-fredrick-md-new-york-ny.jpg"},
   {id:25, name:"Amita K. Bhatt, MD", years:"1991–1992", supervisor:1, role:"Boston Children's Hospital, Department of Ophthalmology Fellow", location:"Newton-Wellesley Eye Assoc., 2000 Washington Street, Newton, MA 02462", note:"", photo:""},
-  {id:26, name:"Monte D. Mills, MD", years:"1992–1993", supervisor:1, role:"Boston Children's Hospital, Department of Ophthalmology Fellow", location:"Children's Hospital of Philadelphia, 34th Street and Civic Center Blvd, Philadelphia, PA 19104", note:"", photo:""},
-  {id:27, name:"O'Ine McCabe, MD", years:"1993–1994", supervisor:1, role:"Boston Children's Hospital, Department of Ophthalmology Fellow", location:"Specialized Pediatric Eye Care, Inc., 77 Herrick Street, Suite 102, Beverly, MA 01915", note:"", photo:""},
-  {id:28, name:"Susan A. Kessler, MD", years:"1994–1995", supervisor:1, role:"Boston Children's Hospital, Department of Ophthalmology Fellow", location:"2546 Balltown Rd Ste 102, Schenectady, NY 12309", note:"", photo:""},
-  {id:29, name:"Eric A. Pierce, MD, PhD", years:"1995–1996", supervisor:1, role:"Boston Children's Hospital, Department of Ophthalmology Fellow", location:"Berman Gund Laboratory, 243 Charles Street, Boston, MA 02114", note:"", photo:""},
+  {id:26, name:"Monte D. Mills, MD", years:"1992–1993", supervisor:1, role:"Boston Children's Hospital, Department of Ophthalmology Fellow", location:"Children's Hospital of Philadelphia, 34th Street and Civic Center Blvd, Philadelphia, PA 19104", note:"", photo:"https://www.chop.edu/sites/default/files/styles/ml_crop_portrait/public/providers-new-mills-monte.jpg?itok=cOw0jpN-"},
+  {id:27, name:"O'Ine McCabe, MD", years:"1993–1994", supervisor:1, role:"Boston Children's Hospital, Department of Ophthalmology Fellow", location:"Specialized Pediatric Eye Care, Inc., 77 Herrick Street, Suite 102, Beverly, MA 01915", note:"", photo:"https://specializedpediatriceyecare.com/wp-content/uploads/2023/06/Oine-300x295.jpg"},
+  {id:28, name:"Susan A. Kessler, MD", years:"1994–1995", supervisor:1, role:"Boston Children's Hospital, Department of Ophthalmology Fellow", location:"2546 Balltown Rd Ste 102, Schenectady, NY 12309", note:"", photo:"https://doximity-res.cloudinary.com/images/f_auto,q_auto,t_public_profile_photo_320x320/stixkfbd1opngj1qyqns/susan-kessler-md-schenectady-ny.jpg"},
+  {id:29, name:"Eric A. Pierce, MD, PhD", years:"1995–1996", supervisor:1, role:"Boston Children's Hospital, Department of Ophthalmology Fellow", location:"Berman Gund Laboratory, 243 Charles Street, Boston, MA 02114", note:"", photo:"https://dmcdn-prod.consumerism.pressganey.com/provider_photos/194/Profile/Live/165_202312211712452150.jpg"},
   {id:30, name:"Linda L. Cooper, MD", years:"1996–1997", supervisor:1, role:"Boston Children's Hospital, Department of Ophthalmology Fellow", location:"137-6868 Sierra Morena Blvd SW, Calgary, AB T3H 3R6, Canada", note:"", photo:""},
   {id:31, name:"Deborah K. VanderVeen, MD", years:"1997–1998", supervisor:1, role:"Director, Boston Children's Hospital, Department of Ophthalmology Fellowship Program", location:"Boston Children's Hospital, 300 Longwood Ave, Boston, MA 02115", note:"", photo:"https://drive.google.com/file/d/1lnpktrbCRDVn1exel_V0UmxYw03GZATe/view?usp=sharing"},
-  {id:32, name:"Janine Eagle, MD", years:"1998–1999", supervisor:1, role:"Boston Children's Hospital, Department of Ophthalmology Fellow", location:"Dartmouth Hitchcock Medical Center, 1 Medical Center Dr, Lebanon, NH 03756", note:"", photo:""},
-  {id:33, name:"Sunil Shivaram, MD", years:"1999–2000", supervisor:1, role:"Boston Children's Hospital, Department of Ophthalmology Fellow", location:"655 East Foothill Blvd., Claremont, CA 91711", note:"", photo:""},
+  {id:32, name:"Janine Eagle, MD", years:"1998–1999", supervisor:1, role:"Boston Children's Hospital, Department of Ophthalmology Fellow", location:"Dartmouth Hitchcock Medical Center, 1 Medical Center Dr, Lebanon, NH 03756", note:"", photo:"https://www.dartmouth-health.org/sites/default/files/styles/provider_profile_image/public/2024-07/Eagle-Janine-1250.jpg?itok=0ilfOdcK"},
+  {id:33, name:"Sunil Shivaram, MD", years:"1999–2000", supervisor:1, role:"Boston Children's Hospital, Department of Ophthalmology Fellow", location:"655 East Foothill Blvd., Claremont, CA 91711", note:"", photo:"https://doximity-res.cloudinary.com/images/f_auto,q_auto,t_public_profile_photo_320x320/1562e719-813e-4b6e-8d73-7cddad3f2566/sunil-shivaram-md-claremont-ca.jpg"},
   {id:34, name:"Alexandra T. Elliott, MD", years:"2000–2001", supervisor:1, role:"Boston Children's Hospital, Department of Ophthalmology Fellow", location:"Boston Children's Hospital, 300 Longwood Ave, Boston, MA 02115", note:"", photo:"https://drive.google.com/file/d/1_tkO1Uwcp6bAx90r1SeP7ABw-xy58oEv/view?usp=sharing"},
-  {id:35, name:"Michelle Liebert, MD", years:"2001–2002", supervisor:1, role:"Boston Children's Hospital, Department of Ophthalmology Fellow", location:"SightMD, 260 Middle Country Road, Suite 109, Smithtown, NY", note:"", photo:""},
-  {id:36, name:"Gonzalo Vike Vicente, MD", years:"2002–2003", supervisor:3, role:"Boston Children's Hospital, Department of Ophthalmology Fellow", location:"Eye Doctors of Washington, 2 Wisconsin Circle, Suite 500, Chevy Chase, MD 20815", note:"", photo:""},
+  {id:35, name:"Michelle Liebert, MD", years:"2001–2002", supervisor:1, role:"Boston Children's Hospital, Department of Ophthalmology Fellow", location:"SightMD, 260 Middle Country Road, Suite 109, Smithtown, NY", note:"", photo:"https://www.sightmd.com/wp-content/uploads/2026/06/Michelle-Liebert-MD-768x1152.jpg"},
+  {id:36, name:"Gonzalo Vike Vicente, MD", years:"2002–2003", supervisor:3, role:"Boston Children's Hospital, Department of Ophthalmology Fellow", location:"Eye Doctors of Washington, 2 Wisconsin Circle, Suite 500, Chevy Chase, MD 20815", note:"", photo:"https://massurg.com/wp-content/uploads/sites/170/Screen-Shot-2018-08-03-at-1.40.01-PM.png"},
   {id:37, name:"Carolyn Wu, MD", years:"2003–2004", supervisor:3, role:"Boston Children's Hospital, Department of Ophthalmology Fellow", location:"Boston Children's Hospital, 300 Longwood Ave, Boston, MA 02115", note:"", photo:"https://drive.google.com/file/d/1soaLvaBEPIdTh-3r8tEGthIfMOQX4I6b/view?usp=sharing"},
-  {id:38, name:"David Sami, MD", years:"2004–2005", supervisor:3, role:"Boston Children's Hospital, Department of Ophthalmology Fellow", location:"ChildrenEyesightMD, 392 South Glassell Street, Suite 100, Orange, CA 92868", note:"", photo:""},
+  {id:38, name:"David Sami, MD", years:"2004–2005", supervisor:3, role:"Boston Children's Hospital, Department of Ophthalmology Fellow", location:"ChildrenEyesightMD, 392 South Glassell Street, Suite 100, Orange, CA 92868", note:"", photo:"https://choc.org/wp-content/uploads/2016/04/med-staff-david-sami-md.jpg"},
   {id:39, name:"Norman Fajardo, MD", years:"2005–2006", supervisor:3, role:"Boston Children's Hospital, Department of Ophthalmology Fellow", location:"Asian Eye Institute, Rockwell Center, Makati City, Metro Manila, Philippines", note:"", photo:"https://drive.google.com/file/d/1LF4D2iuQLa_6zkQarFAA6oJxyTttnMj4/view?usp=sharing"},
-  {id:40, name:"Richard Levy, MD", years:"2005–2006", supervisor:3, role:"Boston Children's Hospital, Department of Ophthalmology Fellow", location:"Cornell University, Weill Medical College, 525 East 68th Street, New York, NY 10021", note:"", photo:""},
-  {id:41, name:"Yonina Ron, MD", years:"2006–2007", supervisor:3, role:"Boston Children's Hospital, Department of Ophthalmology Fellow", location:"Hatzdafim 140, Habonim, Israel 3084500", note:"", photo:""},
-  {id:42, name:"Rupa Wong, MD", years:"2006–2007", supervisor:3, role:"Boston Children's Hospital, Department of Ophthalmology Fellow", location:"Honolulu Eye Clinic, 1329 Lusitana St, Ste 806, Honolulu, HI", note:"", photo:""},
-  {id:43, name:"Vicki Chen, MD", years:"2007–2008", supervisor:3, role:"Boston Children's Hospital, Department of Ophthalmology Fellow", location:"New England Eye Center, 260 Tremont Street, Boston, MA 02116", note:"", photo:""},
+  {id:40, name:"Richard Levy, MD", years:"2005–2006", supervisor:3, role:"Boston Children's Hospital, Department of Ophthalmology Fellow", location:"Cornell University, Weill Medical College, 525 East 68th Street, New York, NY 10021", note:"", photo:"https://images.med.cornell.edu/headshots/rll2003.jpg"},
+  {id:41, name:"Yonina Ron, MD", years:"2006–2007", supervisor:3, role:"Boston Children's Hospital, Department of Ophthalmology Fellow", location:"Hatzdafim 140, Habonim, Israel 3084500", note:"", photo:"https://www.rambam.org.il/en/files/pics/i_1183083.jpg"},
+  {id:42, name:"Rupa Wong, MD", years:"2006–2007", supervisor:3, role:"Boston Children's Hospital, Department of Ophthalmology Fellow", location:"Honolulu Eye Clinic, 1329 Lusitana St, Ste 806, Honolulu, HI", note:"", photo:"https://www.honolulueyeclinic.com/wp-content/uploads/2018/06/HEC0602230071-scaled.jpg"},
+  {id:43, name:"Vicki Chen, MD", years:"2007–2008", supervisor:3, role:"Boston Children's Hospital, Department of Ophthalmology Fellow", location:"New England Eye Center, 260 Tremont Street, Boston, MA 02116", note:"", photo:"https://doximity-res.cloudinary.com/images/f_auto,q_auto,t_public_profile_photo_320x320/o9gnzjiamzdh0woret4l/vicki-chen-md-boston-ma.jpg"},
   {id:44, name:"Cristian Salgado, MD", years:"2007–2008", supervisor:3, role:"Boston Children's Hospital, Department of Ophthalmology Fellow", location:"Avda. Libertador Bernardo O'Higgins 340, Santiago, Chile", note:"", photo:"https://drive.google.com/file/d/1DymDrFP-lcN56-s7nfkaT2wIKnttBwPi/view?usp=sharing"},
   {id:45, name:"Jason Mantagos, MD", years:"2008–2009", supervisor:3, role:"Director, Boston Children's Hospital, Department of Ophthalmology Fellowship Program", location:"Boston Children's Hospital, 300 Longwood Ave, Boston, MA 02115", note:"", photo:"https://drive.google.com/file/d/1n_KXTyFLQt_f8cuj_-1Na2K6c0hB1nRR/view?usp=sharing"},
   {id:46, name:"Gena Heidary, MD, PhD", years:"2008–2009", supervisor:3, role:"Director, Boston Children's Hospital, Department of Ophthalmology Fellowship Program", location:"Boston Children's Hospital, 300 Longwood Ave, Boston, MA 02115", note:"", photo:"https://drive.google.com/file/d/1m_kIgAlLATDWPMBjc7Tn9ys9pHKDQIZB/view?usp=sharing"},
   {id:47, name:"Bharti K. Gangwani, MD", years:"2009–2010", supervisor:3, role:"Boston Children's Hospital, Department of Ophthalmology Fellow", location:"Boston Children's Hospital, 300 Longwood Ave, Boston, MA 02115", note:"", photo:"https://drive.google.com/file/d/1HEGl1-e2OKoVgUuoAobmUo3U_U4s2ynk/view?usp=sharing"},
-  {id:48, name:"Sudha Nallasamy, MD", years:"2009–2010", supervisor:3, role:"Boston Children's Hospital, Department of Ophthalmology Fellow", location:"Children's Hospital Los Angeles, 4650 W Sunset Blvd, Los Angeles, CA 90027", note:"", photo:""},
-  {id:49, name:"Erin Salcone, MD", years:"2009–2010", supervisor:3, role:"Boston Children's Hospital, Department of Ophthalmology Fellow", location:"Dartmouth Hitchcock Medical Center, 1 Medical Center Dr, Lebanon, NH 03756", note:"", photo:""},
-  {id:50, name:"Aparna Ramasubramanian, MD", years:"2010–2011", supervisor:3, role:"Boston Children's Hospital, Department of Ophthalmology Fellow", location:"Medical College of Wisconsin, 8915 W. Connell Court, Milwaukee, WI", note:"", photo:""},
+  {id:48, name:"Sudha Nallasamy, MD", years:"2009–2010", supervisor:3, role:"Boston Children's Hospital, Department of Ophthalmology Fellow", location:"Children's Hospital Los Angeles, 4650 W Sunset Blvd, Los Angeles, CA 90027", note:"", photo:"https://doximity-res.cloudinary.com/images/f_auto,q_auto,t_public_profile_photo_320x320/qyvw0lixsom1rim7sqjb/sudha-nallasamy-md-ventura-ca.jpg"},
+  {id:49, name:"Erin Salcone, MD", years:"2009–2010", supervisor:3, role:"Boston Children's Hospital, Department of Ophthalmology Fellow", location:"Dartmouth Hitchcock Medical Center, 1 Medical Center Dr, Lebanon, NH 03756", note:"", photo:"https://www.dartmouth-health.org/sites/default/files/styles/provider_profile_image/public/2024-07/Salcone-Erin-1250.jpg"},
+  {id:50, name:"Aparna Ramasubramanian, MD", years:"2010–2011", supervisor:3, role:"Boston Children's Hospital, Department of Ophthalmology Fellow", location:"Medical College of Wisconsin, 8915 W. Connell Court, Milwaukee, WI", note:"", photo:"https://mmc.mcw.edu/-/media/MCW/Departments/Ophthalmology/Aparna-Ramasubramanian_Academic-Profile.jpg"},
   {id:51, name:"Ankoor Shah, MD, PhD", years:"2010–2011", supervisor:3, role:"Boston Children's Hospital, Department of Ophthalmology Fellow", location:"Boston Children's Hospital, 300 Longwood Ave, Boston, MA 02115", note:"", photo:"https://drive.google.com/file/d/1YMb3vGJPxqdMZmuVAoyn5V885B8a-upr/view?usp=sharing"},
-  {id:52, name:"Marielle Young, MD", years:"2010–2011", supervisor:3, role:"Boston Children's Hospital, Department of Ophthalmology Fellow", location:"Moran Eye Center, University of Utah, 65 Mario Capecchi Drive, Salt Lake City, UT 84132", note:"", photo:""},
+  {id:52, name:"Marielle Young, MD", years:"2010–2011", supervisor:3, role:"Boston Children's Hospital, Department of Ophthalmology Fellow", location:"Moran Eye Center, University of Utah, 65 Mario Capecchi Drive, Salt Lake City, UT 84132", note:"", photo:"https://doximity-res.cloudinary.com/images/f_auto,q_auto,t_public_profile_photo_320x320/dv3xxd78rebptrzryhxk/marielle-young-md-salt-lake-city-ut.jpg"},
   {id:53, name:"Lan Chang, MD", years:"2011–2012", supervisor:3, role:"Boston Children's Hospital, Department of Ophthalmology Fellow", location:"Mid-Atlantic Permanente Medical Group, 700 2nd St NE, Washington, DC 20002", note:"", photo:""},
-  {id:54, name:"Miriam Ehrenberg, MD", years:"2011–2012", supervisor:3, role:"Boston Children's Hospital, Department of Ophthalmology Fellow", location:"Schneider Children's Medical Center, 14 Kaplan Street, Petah Tikva, Israel", note:"", photo:""},
-  {id:55, name:"Lan Hoang, MD", years:"2011–2012", supervisor:3, role:"Boston Children's Hospital, Department of Ophthalmology Fellow", location:"501 East Palm Valley Blvd, Round Rock, TX 78664", note:"", photo:""},
+  {id:54, name:"Miriam Ehrenberg, MD", years:"2011–2012", supervisor:3, role:"Boston Children's Hospital, Department of Ophthalmology Fellow", location:"Schneider Children's Medical Center, 14 Kaplan Street, Petah Tikva, Israel", note:"", photo:"https://loop.frontiersin.org/images/profile/27898/203"},
+  {id:55, name:"Lan Hoang, MD", years:"2011–2012", supervisor:3, role:"Boston Children's Hospital, Department of Ophthalmology Fellow", location:"501 East Palm Valley Blvd, Round Rock, TX 78664", note:"", photo:"https://doximity-res.cloudinary.com/images/f_auto,q_auto,t_public_profile_photo_320x320/kocjajjaiqyljkdx0lyh/lani-hoang-md-austin-tx.jpg"},
   {id:56, name:"Carolyn P. Graeber, MD", years:"2012–2013", supervisor:3, role:"Boston Children's Hospital, Department of Ophthalmology Fellow", location:"Children's Eye Care of Northern Colorado, 2121 E Harmony Rd, Fort Collins, CO", note:"", photo:"https://drive.google.com/file/d/1dSI_A3PIb0Ee2E3ZuCpEDN4w_Cd26ejO/view?usp=sharing"},
   {id:57, name:"Sardar Mohammad Ali Ayaz Sadiq, MD", years:"2012–2013", supervisor:3, role:"Boston Children's Hospital, Department of Ophthalmology Fellow", location:"Sardar Trust Eye Hospital, Canal Rd, Mustafabad, Lahore, Pakistan", note:"", photo:"https://drive.google.com/file/d/1p_9D9hYgF-BQl4Y-zava6dP3DIU01DDS/view?usp=sharing"},
   {id:58, name:"Andrew Schneier, MD", years:"2012–2013", supervisor:3, role:"Boston Children's Hospital, Department of Ophthalmology Fellow", location:"790 Concourse Parkway South, Ste. 200, Maitland, FL 32751", note:"", photo:"https://drive.google.com/file/d/13CzvbhDZEOeMM3e8f4XVKv4j_G7z3oAj/view?usp=sharing"},
@@ -626,6 +627,55 @@ const people = [
 
 const byId = {};
 people.forEach(p => byId[p.id] = p);
+
+// Professional profile page URLs by person ID
+const websiteMap = {
+  3:  "https://eye.hms.harvard.edu/david-hunter",
+  14: "https://www.med.unc.edu/ophthalmology/provider/john-d-wright-jr-md/",
+  16: "https://www.childrenshospital.org/directory/lois-smith",
+  18: "https://hutchdoc.com/about-dr-marcia-hutcheon/",
+  22: "https://www.childrenshospital.org/directory/linda-dagi",
+  23: "https://scholars.duke.edu/person/freed003",
+  24: "https://profiles.mountsinai.org/douglas-fredrick",
+  26: "https://www.chop.edu/doctors/mills-monte-d",
+  27: "https://specializedpediatriceyecare.com/our-doctors/",
+  29: "https://researchers.masseyeandear.org/details/165",
+  31: "https://www.childrenshospital.org/directory/deborah-vanderveen",
+  32: "https://providers.dartmouth-health.org/1056/janine-r-eagle",
+  34: "https://www.childrenshospital.org/directory/alexandra-elliott",
+  35: "https://www.sightmd.com/our-doctors/michelle-liebert-md/",
+  36: "https://massurg.com/physicians/bio/vicente-gonzalo-md-faap/",
+  37: "https://www.childrenshospital.org/directory/carolyn-wu",
+  38: "https://choc.org/medical-staff/ophthalmology/david-sami-md/",
+  40: "https://weillcornell.org/rllevy",
+  42: "https://www.honolulueyeclinic.com/doctor/rupa-krishnamurthy-wong-m-d/",
+  45: "https://www.childrenshospital.org/directory/jason-mantagos",
+  46: "https://www.childrenshospital.org/directory/gena-heidary",
+  47: "https://www.childrenshospital.org/directory/bharti-gangwani",
+  48: "https://www.chla.org/profile/sudha-nallasamy-md",
+  49: "https://providers.dartmouth-health.org/68/erin-m-salcone",
+  50: "https://www.mcw.edu/departments/ophthalmology-eye-institute/people/aparna-ramasubramanian",
+  51: "https://www.childrenshospital.org/directory/ankoor-shah",
+  52: "https://healthcare.utah.edu/find-a-doctor/marielle-young",
+  54: "https://loop.frontiersin.org/people/27898/bio",
+  59: "https://www.childrenshospital.org/directory/efren-gonzalez",
+  60: "https://www.childrenshospital.org/directory/mary-whitman",
+  63: "https://www.ucihealth.org/find-a-doctor/g/charlotte-gore",
+  64: "https://uihc.org/provider/pavlina-kemp-md",
+  65: "https://www.childrenshospital.org/directory/maan-alkharashi",
+  67: "https://stanfordhealthcare.org/doctors/k/euna-koo.html",
+  68: "https://www.ucsfhealth.org/providers/dr-maanasa-indaram",
+  71: "https://www.hopkinsmedicine.org/profiles/details/jefferson-doyle",
+  72: "https://www.chop.edu/doctors/oatts-julius",
+  75: "https://www.childrenshospital.org/directory/eric-gaier",
+  77: "https://www.childrenshospital.org/directory/ryan-gise",
+  81: "https://www.childrenshospital.org/directory/isdin-oke",
+  82: "https://www.rchsd.org/doctors/lauren-hennein-md/",
+  84: "https://www.childrenshospital.org/directory/jenny-dohlman",
+  85: "https://www.uofmhealth.org/provider/marguerite-weinert",
+  87: "https://www.ucsfhealth.org/providers/dr-tiffany-chen",
+  89: "https://www.childrenshospital.org/directory/lindsay-imber",
+};
 
 // Fellowship director assignments by fellow ID (array of director IDs)
 // Petersen: 1973–2002 (Robb era + 2002-03 gap year)
@@ -788,6 +838,10 @@ function openModal(id) {
   document.getElementById('m-years').textContent = p.years || '';
   document.getElementById('m-location').textContent = p.location || '';
   document.getElementById('m-note').textContent = p.note || '';
+  const wb = document.getElementById('m-website');
+  const site = websiteMap[p.id];
+  if (site) { wb.href = site; wb.style.display = 'inline-block'; }
+  else { wb.style.display = 'none'; }
 
   const wrap = document.getElementById('m-photo-wrap');
   wrap.innerHTML = '';
