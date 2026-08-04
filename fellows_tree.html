@@ -862,7 +862,7 @@ function openModal(id) {
 
   document.getElementById('m-name').textContent = p.name;
   document.getElementById('m-role').textContent = p.role;
-  document.getElementById('m-years').textContent = p.years || '';
+  document.getElementById('m-years').textContent = p.years ? 'Fellowship: ' + p.years : '';
   document.getElementById('m-location').textContent = p.location || '';
   document.getElementById('m-note').textContent = p.note || '';
   const wb = document.getElementById('m-website');
