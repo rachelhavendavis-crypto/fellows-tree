@@ -301,17 +301,18 @@
     border-bottom: 1px solid #e0dbd2;
   }
   .modal-photo {
-    width: 96px;
-    height: 116px;
+    width: 88px;
+    height: 106px;
     object-fit: cover;
     border-radius: 8px;
     box-shadow: 0 3px 10px rgba(0,0,0,0.14);
     background: #c8d4e0;
     flex-shrink: 0;
+    display: block;
   }
   .modal-photo-placeholder {
-    width: 96px;
-    height: 116px;
+    width: 88px;
+    height: 106px;
     border-radius: 8px;
     background: #c8d4e0;
     display: flex;
@@ -323,6 +324,28 @@
     font-family: system-ui, sans-serif;
     flex-shrink: 0;
   }
+  .photo-strip {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    flex-shrink: 0;
+  }
+  .photo-slot {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+  }
+  .photo-slot-label {
+    font-size: 0.62rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    color: #6b7d8e;
+    font-family: system-ui, sans-serif;
+    text-align: center;
+  }
+  .fellowship-photo-slot { display: none; }
   .modal-meta { flex: 1; }
   .modal-name { font-size: 1.35rem; font-weight: 700; color: #003087; line-height: 1.2; }
   .modal-role {
@@ -498,7 +521,16 @@
   <div id="modal">
     <button id="modal-close" title="Close">&times;</button>
     <div class="modal-header">
-      <div id="m-photo-wrap"></div>
+      <div class="photo-strip">
+        <div class="photo-slot" id="m-current-slot">
+          <div id="m-photo-wrap"></div>
+          <div class="photo-slot-label" id="m-current-label"></div>
+        </div>
+        <div class="photo-slot fellowship-photo-slot" id="m-fellowship-slot">
+          <img id="m-fellowship-photo" class="modal-photo" src="" alt="During Fellowship" />
+          <div class="photo-slot-label">During Fellowship</div>
+        </div>
+      </div>
       <div class="modal-meta">
         <div class="modal-name" id="m-name"></div>
         <span class="modal-role" id="m-role"></span>
@@ -627,6 +659,11 @@ const people = [
 
 const byId = {};
 people.forEach(p => byId[p.id] = p);
+
+// Fellowship-era historical photos by person ID
+const fellowshipPhotoMap = {
+  39: "fellowship-photos/fajardo.jpg",
+};
 
 // Fellowship director tenures by person ID
 const fellowshipDirectorYearsMap = {
@@ -887,6 +924,18 @@ function openModal(id) {
   const wrap = document.getElementById('m-photo-wrap');
   wrap.innerHTML = '';
   wrap.appendChild(makeThumb(p, 'modal-photo', 'modal-photo-placeholder'));
+
+  const fellowshipPhoto = fellowshipPhotoMap[p.id];
+  const fellowshipSlot = document.getElementById('m-fellowship-slot');
+  const currentLabel = document.getElementById('m-current-label');
+  if (fellowshipPhoto) {
+    document.getElementById('m-fellowship-photo').src = fellowshipPhoto;
+    fellowshipSlot.style.display = 'flex';
+    currentLabel.textContent = 'Today';
+  } else {
+    fellowshipSlot.style.display = 'none';
+    currentLabel.textContent = '';
+  }
 
   // Fellowship directors
   const directorsEl = document.getElementById('m-directors');
