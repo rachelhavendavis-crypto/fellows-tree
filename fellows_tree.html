@@ -543,6 +543,10 @@
     <div class="modal-body">
       <div class="section-label">Fellowship Director</div>
       <div class="lineage-list" id="m-directors"></div>
+      <div id="m-directorship-block">
+        <div class="section-label">Fellows During Directorship</div>
+        <div class="lineage-list" id="m-directorship-fellows"></div>
+      </div>
       <div class="section-label">Chief During Fellowship</div>
       <div class="lineage-list" id="m-trainers"></div>
       <div class="section-label">Fellows Trained</div>
@@ -963,6 +967,18 @@ function openModal(id) {
     trainerIds.forEach(tid => trainersEl.appendChild(makeLineageCard(byId[tid])));
   }
 
+  // Fellows during directorship (only shown if this person is/was a director)
+  const dirshipBlock = document.getElementById('m-directorship-block');
+  const dirshipEl = document.getElementById('m-directorship-fellows');
+  dirshipEl.innerHTML = '';
+  const dirshipFellows = getDirectorshipFellows(id);
+  if (dirshipFellows.length) {
+    dirshipBlock.style.display = 'block';
+    dirshipFellows.forEach(fid => dirshipEl.appendChild(makeLineageCard(byId[fid])));
+  } else {
+    dirshipBlock.style.display = 'none';
+  }
+
   // Trainees
   const traineesEl = document.getElementById('m-trainees');
   traineesEl.innerHTML = '';
@@ -978,6 +994,22 @@ function openModal(id) {
 
   overlay.classList.add('open');
   modalEl.scrollTop = 0;
+}
+
+function getDirectorshipFellows(directorId) {
+  const tenureStr = fellowshipDirectorYearsMap[directorId];
+  if (!tenureStr) return [];
+  const years = tenureStr.match(/\d{4}/g);
+  if (!years) return [];
+  const tenureStart = parseInt(years[0]);
+  const tenureEnd = years[1] ? parseInt(years[1]) : new Date().getFullYear();
+  return people.filter(p => {
+    if (!p.years || p.id <= 3) return false;
+    const m = p.years.match(/\d{4}/);
+    if (!m) return false;
+    const fellowStart = parseInt(m[0]);
+    return fellowStart >= tenureStart && fellowStart <= tenureEnd;
+  }).map(p => p.id);
 }
 
 function closeModal() {
