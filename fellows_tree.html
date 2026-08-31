@@ -878,10 +878,14 @@ sections.forEach(sec => {
     }
 
     const myTrainees = trainees[id] || [];
-    if (myTrainees.length > 0) {
+    const dirshipCount = sec.directorSection ? getDirectorshipFellows(id).length : 0;
+    const badgeCount = sec.directorSection
+      ? [...new Set([...myTrainees, ...getDirectorshipFellows(id)])].length
+      : myTrainees.length;
+    if (badgeCount > 0) {
       const badge = document.createElement('div');
       badge.className = 'card-trainees-badge';
-      badge.textContent = myTrainees.length + ' fellow' + (myTrainees.length > 1 ? 's' : '') + ' trained';
+      badge.textContent = badgeCount + ' fellow' + (badgeCount > 1 ? 's' : '') + ' trained';
       card.appendChild(badge);
     }
 
