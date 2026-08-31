@@ -1028,6 +1028,13 @@ function makeLineageCard(person) {
     loc.textContent = person.location;
     info.appendChild(loc);
   }
+  const lineageBadgeCount = [...new Set([...(trainees[person.id]||[]), ...getDirectorshipFellows(person.id)])].length;
+  if (lineageBadgeCount > 0) {
+    const badge = document.createElement('div');
+    badge.className = 'card-trainees-badge';
+    badge.textContent = lineageBadgeCount + ' fellow' + (lineageBadgeCount > 1 ? 's' : '') + ' trained';
+    info.appendChild(badge);
+  }
   card.appendChild(info);
   card.addEventListener('click', () => openModal(person.id));
   return card;
