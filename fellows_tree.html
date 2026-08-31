@@ -543,10 +543,6 @@
     <div class="modal-body">
       <div class="section-label">Fellowship Director</div>
       <div class="lineage-list" id="m-directors"></div>
-      <div id="m-directorship-block">
-        <div class="section-label">Fellows During Directorship</div>
-        <div class="lineage-list" id="m-directorship-fellows"></div>
-      </div>
       <div class="section-label">Chief During Fellowship</div>
       <div class="lineage-list" id="m-trainers"></div>
       <div class="section-label">Fellows Trained</div>
@@ -967,29 +963,19 @@ function openModal(id) {
     trainerIds.forEach(tid => trainersEl.appendChild(makeLineageCard(byId[tid])));
   }
 
-  // Fellows during directorship (only shown if this person is/was a director)
-  const dirshipBlock = document.getElementById('m-directorship-block');
-  const dirshipEl = document.getElementById('m-directorship-fellows');
-  dirshipEl.innerHTML = '';
-  const dirshipFellows = getDirectorshipFellows(id);
-  if (dirshipFellows.length) {
-    dirshipBlock.style.display = 'block';
-    dirshipFellows.forEach(fid => dirshipEl.appendChild(makeLineageCard(byId[fid])));
-  } else {
-    dirshipBlock.style.display = 'none';
-  }
-
-  // Trainees
+  // Trainees — includes both directly supervised fellows and those trained during directorship
   const traineesEl = document.getElementById('m-trainees');
   traineesEl.innerHTML = '';
-  const myTrainees = trainees[id] || [];
-  if (!myTrainees.length) {
+  const directlySupervisedIds = trainees[id] || [];
+  const dirshipIds = getDirectorshipFellows(id);
+  const allTraineeIds = [...new Set([...directlySupervisedIds, ...dirshipIds])];
+  if (!allTraineeIds.length) {
     const no = document.createElement('div');
     no.className = 'no-links';
     no.textContent = 'No fellows trained on record';
     traineesEl.appendChild(no);
   } else {
-    myTrainees.forEach(tid => traineesEl.appendChild(makeLineageCard(byId[tid])));
+    allTraineeIds.forEach(tid => traineesEl.appendChild(makeLineageCard(byId[tid])));
   }
 
   overlay.classList.add('open');
