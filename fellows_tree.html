@@ -825,6 +825,9 @@ function makePh(person, cls) {
 function getTrainers(id) {
   const p = byId[id];
   if (!p || p.supervisor == null) return [];
+  // For fellows trained outside BCH (e.g. Stanford), only show the direct supervisor
+  const isBCHFellow = p.role && p.role.includes("Boston Children's");
+  if (!isBCHFellow) return [p.supervisor];
   const result = [];
   // Walk up the chain
   let cur = p;
