@@ -825,9 +825,9 @@ function makePh(person, cls) {
 function getTrainers(id) {
   const p = byId[id];
   if (!p || p.supervisor == null) return [];
-  // For fellows trained outside BCH (e.g. Stanford), only show the direct supervisor
+  // For fellows trained outside BCH (e.g. Stanford), chief is not applicable
   const isBCHFellow = p.role && p.role.includes("Boston Children's");
-  if (!isBCHFellow) return [p.supervisor];
+  if (!isBCHFellow) return [];
   const result = [];
   // Walk up the chain
   let cur = p;
@@ -955,7 +955,8 @@ function openModal(id) {
   // Fellowship directors
   const directorsEl = document.getElementById('m-directors');
   directorsEl.innerHTML = '';
-  const dirIds = directorMap[id] || [];
+  const isBCHFellow = p.role && p.role.includes("Boston Children's");
+  const dirIds = isBCHFellow ? (directorMap[id] || []) : (p.supervisor != null ? [p.supervisor] : []);
   if (!dirIds.length) {
     const no = document.createElement('div');
     no.className = 'no-links';
