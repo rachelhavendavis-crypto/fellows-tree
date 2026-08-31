@@ -819,7 +819,7 @@ function makePh(person, cls) {
   return d;
 }
 
-// Get trainers for a person — Robb's fellows also list Petersen
+// Get trainers for a person (Ophthalmologist-in-Chief only)
 function getTrainers(id) {
   const p = byId[id];
   if (!p || p.supervisor == null) return [];
@@ -833,12 +833,8 @@ function getTrainers(id) {
     result.push(cur.supervisor);
     cur = byId[cur.supervisor];
   }
-  // If Robb (id=1) is in the chain, also include Petersen (id=2) right after Robb
-  if (result.includes(1) && !result.includes(2)) {
-    const robbIdx = result.indexOf(1);
-    result.splice(robbIdx + 1, 0, 2);
-  }
-  return result;
+  // Exclude Petersen (id=2) — he is Fellowship Director, not Ophthalmologist-in-Chief
+  return result.filter(rid => rid !== 2);
 }
 
 // Sections to render
