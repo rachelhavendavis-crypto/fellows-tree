@@ -267,9 +267,12 @@
   }
   .person-card:hover { box-shadow: 0 4px 16px rgba(27,50,82,0.13); border-color: #003087; transform: translateY(-1px); }
   .person-card.selected { border-color: #0072CE; box-shadow: 0 0 0 3px rgba(0,114,206,0.22); }
-  /* Tier 1 — Ophthalmologist-in-Chief: deep steel blue */
-  .person-card.chief-faculty-card { background: #7ab0d0; border-color: #1a4e7a; }
-  .person-card.chief-faculty-card:hover { border-color: #002d60; }
+  /* Tier 1 — Ophthalmologist-in-Chief: deep navy, white text */
+  .person-card.chief-faculty-card { background: #1a4e7a; border-color: #0d2f50; color: white; }
+  .person-card.chief-faculty-card:hover { border-color: #001f3f; }
+  .person-card.chief-faculty-card .card-name { color: white; }
+  .person-card.chief-faculty-card .card-years { color: rgba(255,255,255,0.8); }
+  .person-card.chief-faculty-card .card-photo-placeholder { background: #2d6a9e; color: white; }
   /* Tier 2 — Fellowship Director: medium cornflower blue */
   .person-card.director-faculty-card { background: #a8ccdf; border-color: #3270a0; }
   .person-card.director-faculty-card:hover { border-color: #1a4e7a; }
