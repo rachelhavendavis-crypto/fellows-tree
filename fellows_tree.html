@@ -328,12 +328,22 @@
     margin-top: 2px;
     border: 1px solid transparent;
   }
-  /* White outline so badge doesn't disappear on dark navy chief/director cards */
+  /* All cards: badge outline matches card tone, no solid fill */
+  .person-card .card-trainees-badge {
+    background: transparent;
+    border-color: rgba(0,0,0,0.18);
+    color: #2e3f50;
+  }
+  /* Dark chief/director cards: white outline + white text */
   .person-card.chief-faculty-card .card-trainees-badge,
   .person-card.director-faculty-card .card-trainees-badge {
-    background: transparent;
     border-color: rgba(255,255,255,0.7);
     color: white;
+  }
+  /* 2nd gen: use the card's own border tone */
+  .person-card.second-gen-card .card-trainees-badge {
+    border-color: rgba(96,112,192,0.5);
+    color: #3a52a8;
   }
 
   /* Modal overlay */
