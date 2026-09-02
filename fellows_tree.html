@@ -326,6 +326,14 @@
     padding: 2px 8px;
     border-radius: 10px;
     margin-top: 2px;
+    border: 1px solid transparent;
+  }
+  /* White outline so badge doesn't disappear on dark navy chief/director cards */
+  .person-card.chief-faculty-card .card-trainees-badge,
+  .person-card.director-faculty-card .card-trainees-badge {
+    background: transparent;
+    border-color: rgba(255,255,255,0.7);
+    color: white;
   }
 
   /* Modal overlay */
