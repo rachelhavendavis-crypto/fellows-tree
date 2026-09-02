@@ -12,49 +12,70 @@
   body { font-family: 'Nunito Sans', 'Nunito Sans', system-ui, sans-serif; background: #eef3f8; color: #1c2b3a; }
 
   header {
-    background: linear-gradient(135deg, #002060 0%, #003087 55%, #005EB8 100%);
+    background: linear-gradient(160deg, #001845 0%, #002d72 50%, #004aad 100%);
     color: white;
-    padding: 32px 40px 28px;
+    padding: 36px 40px 32px;
     text-align: center;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 6px;
-    box-shadow: 0 3px 12px rgba(0,30,87,0.25);
+    gap: 0;
+    box-shadow: 0 4px 20px rgba(0,20,70,0.35);
     position: relative;
   }
   header::after {
     content: '';
     position: absolute;
     bottom: 0; left: 0; right: 0;
-    height: 4px;
-    background: linear-gradient(90deg, #E31837 0%, #E31837 33%, #003087 33%, #003087 66%, #E31837 66%, #E31837 100%);
-    opacity: 0.5;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
   }
-  header h1 {
-    font-size: 1.25rem;
-    font-weight: 700;
-    letter-spacing: 1px;
+  /* Institution label — small, tracked, light */
+  header .header-institution {
+    font-size: 0.72rem;
+    font-weight: 400;
+    letter-spacing: 3px;
     text-transform: uppercase;
+    opacity: 0.7;
     font-family: 'Nunito Sans', system-ui, sans-serif;
-    line-height: 1.55;
+  }
+  /* Hospital name — medium, confident */
+  header h1 {
+    font-size: 1.6rem;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    text-transform: none;
+    font-family: 'Nunito Sans', system-ui, sans-serif;
+    line-height: 1.2;
+    margin-top: 6px;
     opacity: 1;
   }
+  /* Dept — lighter weight, clearly secondary */
+  header .header-dept {
+    font-size: 1rem;
+    font-weight: 400;
+    font-family: 'Nunito Sans', system-ui, sans-serif;
+    opacity: 0.75;
+    letter-spacing: 0.5px;
+    margin-top: 3px;
+  }
+  /* Divider */
+  header .header-rule {
+    width: 60px;
+    height: 2px;
+    background: rgba(255,255,255,0.35);
+    border-radius: 2px;
+    margin: 16px auto 14px;
+  }
+  /* Title — the hero text */
   header p {
-    margin-top: 6px;
-    font-size: 2.2rem;
-    font-weight: 700;
+    font-size: 2.8rem;
+    font-weight: 800;
     font-family: 'Nunito Sans', system-ui, sans-serif;
     font-style: normal;
-    letter-spacing: -0.5px;
-    line-height: 1.15;
-  }
-  header .header-tagline {
-    font-size: 0.82rem;
-    font-family: 'Nunito Sans', system-ui, sans-serif;
-    opacity: 0.7;
-    letter-spacing: 0.5px;
-    margin-top: 4px;
+    letter-spacing: -1px;
+    line-height: 1.1;
+    margin: 0;
   }
 
   #search-bar {
@@ -512,7 +533,10 @@
     <circle cx="62" cy="83" r="3.5" fill="white" opacity="0.8"/>
     <circle cx="84" cy="83" r="3.5" fill="white" opacity="0.8"/>
   </svg>
-  <h1>Boston Children's Hospital<br>Department of Ophthalmology</h1>
+  <div class="header-institution">Est. 1869 · Boston, Massachusetts</div>
+  <h1>Boston Children's Hospital</h1>
+  <div class="header-dept">Department of Ophthalmology</div>
+  <div class="header-rule"></div>
   <p>Fellowship Family Tree</p>
 </header>
 
