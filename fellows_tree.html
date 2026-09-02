@@ -394,6 +394,11 @@
     transition: border-color 0.12s, box-shadow 0.12s;
   }
   .lineage-card:hover { border-color: #003087; box-shadow: 0 2px 8px rgba(27,50,82,0.1); }
+  .lineage-card.chief-card {
+    background: #d0dff0;
+    border-color: #7a9ec4;
+  }
+  .lineage-card.chief-card:hover { border-color: #003087; box-shadow: 0 2px 8px rgba(0,30,100,0.15); }
   .lineage-thumb {
     width: 40px;
     height: 40px;
@@ -1043,7 +1048,11 @@ function openModal(id) {
     no.textContent = 'No trainer on record';
     trainersEl.appendChild(no);
   } else {
-    trainerIds.forEach(tid => trainersEl.appendChild(makeLineageCard(byId[tid])));
+    trainerIds.forEach(tid => {
+      const c = makeLineageCard(byId[tid]);
+      c.classList.add('chief-card');
+      trainersEl.appendChild(c);
+    });
   }
 
   // Trainees — includes both directly supervised fellows and those trained during directorship
