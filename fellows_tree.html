@@ -6,7 +6,7 @@
 <title>Boston Children's Hospital Department of Ophthalmology Fellowship Family Tree</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,wght@0,400;0,600;0,700;0,800;1,400&family=Playfair+Display:ital@1&display=swap" rel="stylesheet">
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body { font-family: 'Nunito Sans', 'Nunito Sans', system-ui, sans-serif; background: #eef3f8; color: #1c2b3a; }
@@ -39,25 +39,26 @@
     opacity: 0.7;
     font-family: 'Nunito Sans', system-ui, sans-serif;
   }
-  /* Hospital name — medium, confident */
+  /* Hospital name — smaller, understated label */
   header h1 {
-    font-size: 1.6rem;
-    font-weight: 800;
-    letter-spacing: 0.5px;
-    text-transform: none;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
     font-family: 'Nunito Sans', system-ui, sans-serif;
-    line-height: 1.2;
-    margin-top: 6px;
-    opacity: 1;
-  }
-  /* Dept — lighter weight, clearly secondary */
-  header .header-dept {
-    font-size: 1rem;
-    font-weight: 400;
-    font-family: 'Nunito Sans', system-ui, sans-serif;
+    line-height: 1.4;
     opacity: 0.75;
-    letter-spacing: 0.5px;
-    margin-top: 3px;
+    margin-top: 0;
+  }
+  /* Dept — the larger, bolder institution line */
+  header .header-dept {
+    font-size: 1.7rem;
+    font-weight: 800;
+    font-family: 'Nunito Sans', system-ui, sans-serif;
+    opacity: 1;
+    letter-spacing: 0.2px;
+    margin-top: 2px;
+    line-height: 1.2;
   }
   /* Divider */
   header .header-rule {
@@ -67,13 +68,13 @@
     border-radius: 2px;
     margin: 16px auto 14px;
   }
-  /* Title — the hero text */
+  /* Title — elegant italic hero */
   header p {
-    font-size: 2.8rem;
-    font-weight: 800;
-    font-family: 'Nunito Sans', system-ui, sans-serif;
-    font-style: normal;
-    letter-spacing: -1px;
+    font-size: 2.6rem;
+    font-weight: 400;
+    font-family: 'Playfair Display', Georgia, serif;
+    font-style: italic;
+    letter-spacing: 0.5px;
     line-height: 1.1;
     margin: 0;
   }
