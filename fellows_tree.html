@@ -195,8 +195,8 @@
   }
 
   .person-card {
-    background: #fafaf7;
-    border: 1px solid #c0d4e8;
+    background: #e8f2fb;
+    border: 1px solid #b0ccе4;
     border-radius: 10px;
     padding: 14px 12px;
     cursor: pointer;
@@ -208,8 +208,10 @@
     gap: 8px;
   }
   .person-card:hover { box-shadow: 0 4px 16px rgba(27,50,82,0.13); border-color: #003087; transform: translateY(-1px); }
-  .person-card.selected { border-color: #0072CE; box-shadow: 0 0 0 3px rgba(139,26,26,0.18); }
+  .person-card.selected { border-color: #0072CE; box-shadow: 0 0 0 3px rgba(0,114,206,0.22); }
   .person-card.faculty-card { border-color: #003087; background: #ddeaf8; }
+  .person-card.second-gen-card { background: #ede8f5; border-color: #b8a8d8; }
+  .person-card.second-gen-card:hover { border-color: #6644aa; }
 
   .card-photo {
     width: 70px;
@@ -921,7 +923,7 @@ const sections = [
   { label: "Fellowship Director", ids: [2, 31, 45, 46], faculty: true, directorSection: true },
   { label: "Trained by Dr. Robb & Dr. Petersen — 1973 to 2002", ids: people.filter(p => p.supervisor === 1).map(p => p.id) },
   { label: "Trained by Dr. Hunter — 2002 to present", ids: people.filter(p => p.supervisor === 3).map(p => p.id) },
-  { label: "Second-Generation Fellows (trained by Boston Children's Hospital alumni)", ids: people.filter(p => p.supervisor && p.supervisor > 3).map(p => p.id) }
+  { label: "Second-Generation Fellows (trained by Boston Children's Hospital alumni)", ids: people.filter(p => p.supervisor && p.supervisor > 3).map(p => p.id), secondGen: true }
 ];
 
 const grid = document.getElementById('grid-content');
@@ -942,7 +944,7 @@ sections.forEach(sec => {
   sec.ids.forEach(id => {
     const p = byId[id];
     const card = document.createElement('div');
-    card.className = 'person-card' + (sec.faculty ? ' faculty-card' : '');
+    card.className = 'person-card' + (sec.faculty ? ' faculty-card' : sec.secondGen ? ' second-gen-card' : '');
     card.dataset.id = id;
 
     card.appendChild(makeThumb(p, 'card-photo', 'card-photo-placeholder'));
