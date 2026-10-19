@@ -9,210 +9,171 @@
 <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: 'Nunito Sans', 'Nunito Sans', system-ui, sans-serif; background: #eef3f8; color: #1c2b3a; }
+  body { font-family: 'Nunito Sans', system-ui, sans-serif; background: #f4f7fb; color: #1c2b3a; }
 
+  /* ── Header ── */
   header {
-    background: linear-gradient(160deg, #001845 0%, #002d72 50%, #004aad 100%);
+    background: linear-gradient(150deg, #001433 0%, #002060 55%, #003d99 100%);
     color: white;
-    padding: 36px 40px 32px;
+    padding: 40px 40px 36px;
     text-align: center;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 0;
-    box-shadow: 0 4px 20px rgba(0,20,70,0.35);
     position: relative;
   }
   header::after {
     content: '';
     position: absolute;
     bottom: 0; left: 0; right: 0;
-    height: 3px;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    height: 2px;
+    background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.25) 50%, transparent 100%);
   }
-  /* Institution label — small, tracked, light */
-  header .header-institution {
-    font-size: 0.72rem;
-    font-weight: 400;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    opacity: 0.7;
-    font-family: 'Nunito Sans', system-ui, sans-serif;
-  }
-  /* Hospital name — smaller, understated label */
   header h1 {
-    font-size: 0.85rem;
+    font-size: 0.72rem;
     font-weight: 600;
-    letter-spacing: 2px;
+    letter-spacing: 3.5px;
     text-transform: uppercase;
     font-family: 'Nunito Sans', system-ui, sans-serif;
     line-height: 1.4;
-    opacity: 0.75;
-    margin-top: 0;
+    opacity: 0.6;
+    margin-top: 10px;
   }
-  /* Dept — the larger, bolder institution line */
   header .header-dept {
-    font-size: 1.7rem;
+    font-size: 1.5rem;
     font-weight: 600;
     font-family: 'Nunito Sans', system-ui, sans-serif;
-    opacity: 1;
-    letter-spacing: 0.2px;
-    margin-top: 2px;
+    opacity: 0.9;
+    letter-spacing: 0.3px;
+    margin-top: 4px;
     line-height: 1.2;
   }
-  /* Divider */
   header .header-rule {
-    width: 60px;
-    height: 2px;
-    background: rgba(255,255,255,0.35);
+    width: 40px;
+    height: 1.5px;
+    background: rgba(255,255,255,0.3);
     border-radius: 2px;
-    margin: 16px auto 14px;
+    margin: 18px auto 16px;
   }
-  /* Title — clean, light hero */
   header p {
-    font-size: 2.6rem;
+    font-size: 2.4rem;
     font-weight: 700;
     font-family: 'Nunito Sans', system-ui, sans-serif;
-    font-style: normal;
-    letter-spacing: 2px;
+    letter-spacing: 1.5px;
     line-height: 1.1;
     margin: 0;
-    opacity: 0.95;
   }
 
+  /* ── Search / toolbar ── */
   #search-bar {
     display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
     justify-content: center;
-    padding: 14px 20px;
-    background: #dde8f2;
-    border-bottom: 1px solid #b8cce0;
+    padding: 12px 24px;
+    background: #ffffff;
+    border-bottom: 1px solid #e0e8f0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
   }
   #search-bar input {
-    width: 100%;
-    max-width: 460px;
-    padding: 9px 16px;
-    font-size: 0.95rem;
-    border: 1px solid #a8c0d6;
-    border-radius: 20px;
+    flex: 1;
+    min-width: 200px;
+    max-width: 500px;
+    padding: 9px 18px;
+    font-size: 0.9rem;
+    border: 1.5px solid #d0dce8;
+    border-radius: 24px;
     outline: none;
     font-family: 'Nunito Sans', system-ui, sans-serif;
-    background: #fafaf7;
+    background: #f8fafc;
     color: #1c2b3a;
+    transition: border-color 0.15s, box-shadow 0.15s;
   }
-  #search-bar .search-hint {
-    font-size: 0.72rem;
-    color: #6b7d8e;
-    font-family: 'Nunito Sans', system-ui, sans-serif;
-    text-align: center;
-    margin-top: 5px;
-  }
+  #search-bar input:focus { border-color: #2060c0; box-shadow: 0 0 0 3px rgba(32,96,192,0.1); background: #fff; }
+  #search-bar .search-hint { font-size: 0.72rem; color: #6b7d8e; font-family: 'Nunito Sans', system-ui, sans-serif; text-align: center; margin-top: 5px; }
   #clear-search {
     display: none;
-    background: #003087;
+    background: #1a4e7a;
     color: white;
     border: none;
-    border-radius: 14px;
-    padding: 6px 14px;
-    font-size: 0.8rem;
+    border-radius: 20px;
+    padding: 7px 16px;
+    font-size: 0.78rem;
     font-family: 'Nunito Sans', system-ui, sans-serif;
     cursor: pointer;
-    margin-left: 8px;
     white-space: nowrap;
+    transition: background 0.15s;
   }
   #clear-search:hover { background: #0072CE; }
-  #search-count {
-    font-size: 0.8rem;
-    color: #6b7d8e;
-    font-family: 'Nunito Sans', system-ui, sans-serif;
-    margin-left: 10px;
-    white-space: nowrap;
-  }
-  #search-bar input:focus { border-color: #003087; box-shadow: 0 0 0 3px rgba(27,50,82,0.12); }
+  #search-count { font-size: 0.78rem; color: #6b7d8e; font-family: 'Nunito Sans', system-ui, sans-serif; white-space: nowrap; }
 
-  /* Filter toggle button */
+  /* ── Filters ── */
   #filter-toggle {
-    background: #f0f4fa;
-    color: #003087;
-    border: 1.5px solid #c0d4e8;
+    background: #f4f7fb;
+    color: #1a4e7a;
+    border: 1.5px solid #c8d8ea;
     border-radius: 20px;
-    padding: 5px 14px;
-    font-size: 0.8rem;
+    padding: 7px 16px;
+    font-size: 0.78rem;
     font-family: 'Nunito Sans', system-ui, sans-serif;
     cursor: pointer;
     white-space: nowrap;
     transition: background 0.15s, border-color 0.15s;
   }
-  #filter-toggle:hover, #filter-toggle.active { background: #003087; color: #fff; border-color: #003087; }
-
-  /* Filter bar */
+  #filter-toggle:hover, #filter-toggle.active { background: #1a4e7a; color: #fff; border-color: #1a4e7a; }
   #filter-bar {
     max-width: 1200px;
     margin: 0 auto 14px;
-    padding: 0 24px;
+    padding: 0 32px;
     display: none;
     flex-direction: column;
     gap: 8px;
   }
   #filter-bar.open { display: flex; }
-  .filter-row {
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 6px;
-  }
+  .filter-row { display: flex; align-items: center; flex-wrap: wrap; gap: 6px; }
   .filter-label {
-    font-size: 0.72rem;
+    font-size: 0.68rem;
     font-weight: 700;
-    letter-spacing: 0.06em;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: #003087;
+    color: #4a6a8a;
     font-family: 'Nunito Sans', system-ui, sans-serif;
     white-space: nowrap;
     min-width: 68px;
   }
   .filter-chip {
-    background: #f0f4fa;
-    color: #1c2b3a;
-    border: 1.5px solid #c0d4e8;
+    background: #fff;
+    color: #2e4a6a;
+    border: 1.5px solid #c8d8ea;
     border-radius: 20px;
-    padding: 4px 13px;
-    font-size: 0.78rem;
+    padding: 4px 14px;
+    font-size: 0.76rem;
     font-family: 'Nunito Sans', system-ui, sans-serif;
     cursor: pointer;
-    transition: background 0.15s, border-color 0.15s, color 0.15s;
+    transition: all 0.15s;
     white-space: nowrap;
   }
-  .filter-chip:hover { border-color: #0072CE; background: #ddeaf8; }
-  .filter-chip.active {
-    background: #003087;
-    color: #fff;
-    border-color: #003087;
-  }
-  #filter-reset {
-    font-size: 0.75rem;
-    color: #0072CE;
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-family: 'Nunito Sans', system-ui, sans-serif;
-    padding: 4px 8px;
-    text-decoration: underline;
-    display: none;
-  }
-  #filter-reset:hover { color: #003087; }
+  .filter-chip:hover { border-color: #2060c0; background: #eef4ff; color: #1a3a7a; }
+  .filter-chip.active { background: #1a4e7a; color: #fff; border-color: #1a4e7a; }
+  #filter-reset { font-size: 0.75rem; color: #2060c0; background: none; border: none; cursor: pointer; font-family: 'Nunito Sans', system-ui, sans-serif; padding: 4px 8px; text-decoration: underline; display: none; }
+  #filter-reset:hover { color: #1a4e7a; }
 
   #search-results {
     display: none;
     position: fixed;
-    top: 108px;
+    top: 58px;
     left: 50%;
     transform: translateX(-50%);
-    width: 460px;
+    width: 500px;
     max-width: 95vw;
-    background: #fafaf7;
-    border: 1px solid #a8c0d6;
-    border-radius: 10px;
-    box-shadow: 0 6px 24px rgba(0,0,0,0.15);
+    background: #fff;
+    border: 1px solid #d0dce8;
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(0,20,60,0.14);
     z-index: 200;
     max-height: 340px;
     overflow-y: auto;
@@ -221,309 +182,238 @@
     display: flex;
     align-items: center;
     gap: 10px;
-    padding: 9px 14px;
+    padding: 10px 16px;
     cursor: pointer;
-    border-bottom: 1px solid #ddeaf8;
+    border-bottom: 1px solid #f0f4f8;
     font-family: 'Nunito Sans', system-ui, sans-serif;
+    transition: background 0.1s;
   }
   .search-result-item:last-child { border-bottom: none; }
-  .search-result-item:hover { background: #e8f0fb; }
-  .search-result-item .sr-name { font-size: 0.88rem; font-weight: 600; }
-  .search-result-item .sr-years { font-size: 0.75rem; color: #6b7d8e; }
+  .search-result-item:hover { background: #f0f6ff; }
+  .search-result-item .sr-name { font-size: 0.88rem; font-weight: 600; color: #1c2b3a; }
+  .search-result-item .sr-years { font-size: 0.74rem; color: #6b7d8e; }
 
-  /* Grid layout */
-  #page-body { padding: 28px 32px; max-width: 1400px; margin: 0 auto; }
+  /* ── Grid layout ── */
+  #page-body { padding: 32px 36px; max-width: 1440px; margin: 0 auto; }
 
-  .era-section { margin-bottom: 40px; }
+  .era-section { margin-bottom: 48px; }
   .era-heading {
     font-family: 'Nunito Sans', system-ui, sans-serif;
-    font-size: 1.05rem;
-    font-weight: 800;
+    font-size: 0.72rem;
+    font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 1.5px;
-    color: #003087;
-    border-bottom: 2.5px solid #0072CE;
-    padding-bottom: 7px;
-    margin-bottom: 18px;
+    letter-spacing: 2px;
+    color: #2060a0;
+    border-bottom: 2px solid #c8d8ea;
+    padding-bottom: 8px;
+    margin-bottom: 20px;
   }
 
   .card-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(175px, 1fr));
     gap: 14px;
   }
 
+  /* ── Person cards ── */
   .person-card {
-    background: #deeef9;
-    border: 1.5px solid #6699bb;
-    border-radius: 10px;
-    padding: 14px 12px;
+    background: #ffffff;
+    border: 1px solid #d8e8f4;
+    border-radius: 12px;
+    padding: 16px 12px 14px;
     cursor: pointer;
-    transition: box-shadow 0.15s, border-color 0.15s, transform 0.1s;
+    transition: box-shadow 0.18s, transform 0.15s, border-color 0.15s;
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
     gap: 8px;
+    box-shadow: 0 1px 4px rgba(20,40,80,0.06);
   }
-  .person-card:hover { box-shadow: 0 4px 16px rgba(27,50,82,0.13); border-color: #003087; transform: translateY(-1px); }
-  .person-card.selected { border-color: #0072CE; box-shadow: 0 0 0 3px rgba(0,114,206,0.22); }
-  /* Tier 1 — Ophthalmologist-in-Chief: deep navy, white text */
-  .person-card.chief-faculty-card { background: #1a4e7a; border-color: #0d2f50; color: white; }
-  .person-card.chief-faculty-card:hover { border-color: #001f3f; }
-  .person-card.chief-faculty-card .card-name { color: white; }
-  .person-card.chief-faculty-card .card-years { color: rgba(255,255,255,0.8); }
-  .person-card.chief-faculty-card .card-photo-placeholder { background: #2d6a9e; color: white; }
-  /* Tier 2 — Fellowship Director: medium cornflower blue */
-  .person-card.director-faculty-card { background: #4d8db8; border-color: #2a6090; color: white; }
-  .person-card.director-faculty-card:hover { border-color: #1a4e7a; }
-  .person-card.director-faculty-card .card-name { color: white; }
-  .person-card.director-faculty-card .card-years { color: rgba(255,255,255,0.8); }
-  .person-card.director-faculty-card .card-photo-placeholder { background: #2d6a9e; color: white; }
-  /* Tier 3 — Fellows: light sky blue (base .person-card already #deeef9) */
-  /* Tier 4 — 2nd Gen: pale blue-violet, same cool family */
-  .person-card.second-gen-card { background: #d8dcf2; border-color: #6070c0; }
-  .person-card.second-gen-card:hover { border-color: #3a52a8; }
+  .person-card:hover { box-shadow: 0 6px 20px rgba(20,40,100,0.12); border-color: #9ab8d8; transform: translateY(-2px); }
+  .person-card.selected { border-color: #2060c0; box-shadow: 0 0 0 3px rgba(32,96,192,0.15); }
 
-  .card-photo {
-    width: 70px;
-    height: 70px;
-    border-radius: 50%;
-    object-fit: cover;
-    background: #c8d4e0;
-    flex-shrink: 0;
-  }
+  /* Tier 1 — Chief: deep navy */
+  .person-card.chief-faculty-card { background: #1a4070; border-color: #0d2a50; color: white; box-shadow: 0 2px 8px rgba(10,25,60,0.2); }
+  .person-card.chief-faculty-card:hover { box-shadow: 0 8px 24px rgba(10,25,60,0.28); border-color: #0a1e3f; }
+  .person-card.chief-faculty-card .card-name { color: white; }
+  .person-card.chief-faculty-card .card-years { color: rgba(255,255,255,0.75); }
+  .person-card.chief-faculty-card .card-photo-placeholder { background: #2a5a90; color: rgba(255,255,255,0.9); }
+
+  /* Tier 2 — Director: mid blue */
+  .person-card.director-faculty-card { background: #3a80b0; border-color: #2060a0; color: white; box-shadow: 0 2px 8px rgba(15,40,90,0.15); }
+  .person-card.director-faculty-card:hover { box-shadow: 0 8px 24px rgba(15,40,90,0.22); border-color: #1a4e7a; }
+  .person-card.director-faculty-card .card-name { color: white; }
+  .person-card.director-faculty-card .card-years { color: rgba(255,255,255,0.78); }
+  .person-card.director-faculty-card .card-photo-placeholder { background: #2a6090; color: rgba(255,255,255,0.9); }
+
+  /* Tier 4 — 2nd Gen: pale periwinkle */
+  .person-card.second-gen-card { background: #ecedf8; border-color: #b0b8e0; }
+  .person-card.second-gen-card:hover { border-color: #6070c0; }
+
+  .card-photo { width: 68px; height: 68px; border-radius: 50%; object-fit: cover; background: #c8d8e8; flex-shrink: 0; }
   .card-photo-placeholder {
-    width: 70px;
-    height: 70px;
-    border-radius: 50%;
-    background: #c8d4e0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.1rem;
-    color: #3a5a7a;
-    font-weight: 700;
-    font-family: 'Nunito Sans', system-ui, sans-serif;
-    flex-shrink: 0;
+    width: 68px; height: 68px; border-radius: 50%;
+    background: #c8d8e8;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.05rem; color: #4a6a8a; font-weight: 700;
+    font-family: 'Nunito Sans', system-ui, sans-serif; flex-shrink: 0;
   }
-  .card-name {
-    font-size: 0.88rem;
-    font-weight: 700;
-    line-height: 1.3;
-    color: #1c2b3a;
-  }
-  .card-years {
-    font-size: 0.78rem;
-    font-weight: 700;
-    color: #2e3f50;
-    font-family: 'Nunito Sans', system-ui, sans-serif;
-  }
+  .card-name { font-size: 0.85rem; font-weight: 700; line-height: 1.3; color: #1c2b3a; }
+  .card-years { font-size: 0.74rem; font-weight: 600; color: #4a6a8a; font-family: 'Nunito Sans', system-ui, sans-serif; }
+
   .card-trainees-badge {
-    font-size: 0.68rem;
+    font-size: 0.65rem;
     font-family: 'Nunito Sans', system-ui, sans-serif;
-    background: #003087;
+    background: transparent;
     color: white;
-    padding: 2px 8px;
-    border-radius: 10px;
+    padding: 2px 9px;
+    border-radius: 12px;
     margin-top: 2px;
     border: 1px solid transparent;
+    letter-spacing: 0.3px;
   }
-  /* Base fellow cards only: thin navy outline */
   .person-card:not(.chief-faculty-card):not(.director-faculty-card):not(.second-gen-card) .card-trainees-badge {
-    background: transparent;
     border-color: #1a4e7a;
     color: #1a4e7a;
   }
-  /* Dark chief/director cards: white outline + white text */
   .person-card.chief-faculty-card .card-trainees-badge,
   .person-card.director-faculty-card .card-trainees-badge {
-    border-color: rgba(255,255,255,0.7);
-    color: white;
+    border-color: rgba(255,255,255,0.55);
+    color: rgba(255,255,255,0.9);
   }
-  /* 2nd gen: use the card's own border tone */
   .person-card.second-gen-card .card-trainees-badge {
-    border-color: rgba(96,112,192,0.5);
-    color: #3a52a8;
+    border-color: #8088c8;
+    color: #4050a0;
   }
 
-  /* Modal overlay */
+  /* ── Modal ── */
   #modal-overlay {
     display: none;
     position: fixed;
     inset: 0;
-    background: rgba(20,28,39,0.55);
+    background: rgba(10,18,32,0.5);
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
     z-index: 300;
     align-items: center;
     justify-content: center;
     padding: 20px;
   }
   #modal-overlay.open { display: flex; }
-
   #modal {
-    background: #fafaf7;
-    border-radius: 14px;
+    background: #fff;
+    border-radius: 16px;
     width: 100%;
     max-width: 640px;
     max-height: 88vh;
     overflow-y: auto;
-    box-shadow: 0 12px 48px rgba(0,0,0,0.25);
+    box-shadow: 0 20px 60px rgba(0,10,40,0.22);
     position: relative;
   }
-
   #modal-close {
     position: absolute;
-    top: 14px;
-    right: 16px;
-    background: none;
+    top: 14px; right: 14px;
+    background: #f4f7fb;
     border: none;
-    font-size: 1.4rem;
+    font-size: 1.1rem;
     cursor: pointer;
     color: #6b7d8e;
     line-height: 1;
-    padding: 2px 6px;
-    border-radius: 6px;
+    padding: 5px 8px;
+    border-radius: 8px;
+    transition: background 0.12s, color 0.12s;
   }
-  #modal-close:hover { background: #ddeaf8; color: #1c2b3a; }
+  #modal-close:hover { background: #e0e8f0; color: #1c2b3a; }
 
   .modal-header {
     display: flex;
     gap: 20px;
     align-items: flex-start;
-    padding: 28px 28px 20px;
-    border-bottom: 1px solid #e0dbd2;
+    padding: 28px 28px 22px;
+    border-bottom: 1px solid #eef2f8;
   }
-  .modal-photo {
-    width: 88px;
-    height: 106px;
-    object-fit: cover;
-    border-radius: 8px;
-    box-shadow: 0 3px 10px rgba(0,0,0,0.14);
-    background: #c8d4e0;
-    flex-shrink: 0;
-    display: block;
-  }
+  .modal-photo { width: 88px; height: 106px; object-fit: cover; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); background: #c8d8e8; flex-shrink: 0; display: block; }
   .modal-photo-placeholder {
-    width: 88px;
-    height: 106px;
-    border-radius: 8px;
-    background: #c8d4e0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 2rem;
-    color: #3a5a7a;
-    font-weight: 700;
-    font-family: 'Nunito Sans', system-ui, sans-serif;
-    flex-shrink: 0;
+    width: 88px; height: 106px; border-radius: 10px;
+    background: #d0dce8;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 2rem; color: #4a6a8a; font-weight: 700;
+    font-family: 'Nunito Sans', system-ui, sans-serif; flex-shrink: 0;
   }
-  .photo-strip {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    flex-shrink: 0;
-  }
-  .photo-slot {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 4px;
-  }
-  .photo-slot-label {
-    font-size: 0.62rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.8px;
-    color: #6b7d8e;
-    font-family: 'Nunito Sans', system-ui, sans-serif;
-    text-align: center;
-  }
+  .photo-strip { display: flex; flex-direction: column; gap: 10px; flex-shrink: 0; }
+  .photo-slot { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+  .photo-slot-label { font-size: 0.6rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; color: #8a9aaa; font-family: 'Nunito Sans', system-ui, sans-serif; text-align: center; }
   .fellowship-photo-slot { display: none; }
   .modal-meta { flex: 1; }
-  .modal-name { font-size: 1.35rem; font-weight: 700; color: #003087; line-height: 1.2; }
+  .modal-name { font-size: 1.3rem; font-weight: 700; color: #0e2a52; line-height: 1.2; }
   .modal-role {
     display: inline-block;
-    margin-top: 6px;
-    background: transparent;
-    color: #3270a0;
-    border: 1px solid #a8ccdf;
-    font-size: 0.68rem;
-    padding: 2px 9px;
-    border-radius: 10px;
+    margin-top: 7px;
+    background: #f0f5ff;
+    color: #2060a0;
+    border: 1px solid #c0d4f0;
+    font-size: 0.65rem;
+    padding: 3px 10px;
+    border-radius: 12px;
     font-family: 'Nunito Sans', system-ui, sans-serif;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-  }
-  .modal-years { margin-top: 7px; font-size: 0.88rem; color: #6b7d8e; font-style: italic; font-family: 'Nunito Sans', system-ui, sans-serif; }
-  .modal-location { margin-top: 4px; font-size: 0.83rem; color: #4a5a6a; font-family: 'Nunito Sans', system-ui, sans-serif; }
-  .modal-note { margin-top: 4px; font-size: 0.8rem; color: #8b4a1a; font-style: italic; font-family: 'Nunito Sans', system-ui, sans-serif; }
-
-  .modal-body { padding: 20px 28px 28px; }
-
-  .section-label {
-    font-size: 0.68rem;
     font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 1.2px;
-    color: #4a5a6a;
-    border-bottom: 1px solid #9aaabb;
-    padding-bottom: 5px;
+    letter-spacing: 0.6px;
+  }
+  .modal-years { margin-top: 8px; font-size: 0.86rem; color: #6b7d8e; font-style: italic; font-family: 'Nunito Sans', system-ui, sans-serif; }
+  .modal-location { margin-top: 5px; font-size: 0.82rem; color: #4a5a6a; font-family: 'Nunito Sans', system-ui, sans-serif; }
+  .modal-note { margin-top: 5px; font-size: 0.78rem; color: #8b4a1a; font-style: italic; font-family: 'Nunito Sans', system-ui, sans-serif; }
+
+  .modal-body { padding: 22px 28px 30px; }
+
+  .section-label {
+    font-size: 0.65rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.4px;
+    color: #5a7a9a;
+    border-bottom: 1px solid #e0e8f0;
+    padding-bottom: 6px;
     margin-bottom: 12px;
-    margin-top: 20px;
+    margin-top: 22px;
     font-family: 'Nunito Sans', system-ui, sans-serif;
   }
   .section-label:first-child { margin-top: 0; }
 
-  .lineage-list { display: flex; flex-direction: column; gap: 8px; }
+  .lineage-list { display: flex; flex-direction: column; gap: 7px; }
   .lineage-card {
     display: flex;
     align-items: center;
     gap: 12px;
-    padding: 9px 12px;
-    background: #eef3f8;
-    border-radius: 8px;
+    padding: 10px 13px;
+    background: #f8fafc;
+    border-radius: 10px;
     cursor: pointer;
-    border: 1px solid #c0d4e8;
-    transition: border-color 0.12s, box-shadow 0.12s;
+    border: 1px solid #e4eef8;
+    transition: border-color 0.12s, box-shadow 0.12s, background 0.12s;
   }
-  .lineage-card:hover { border-color: #5a90bb; box-shadow: 0 2px 8px rgba(27,50,82,0.1); }
-  .lineage-card.chief-card {
-    background: #d0dff0;
-    border-color: #7a9ec4;
-  }
-  .lineage-card.chief-card:hover { border-color: #4d8db8; box-shadow: 0 2px 8px rgba(0,30,100,0.12); }
-  .lineage-thumb {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    object-fit: cover;
-    background: #c8d4e0;
-    flex-shrink: 0;
-  }
-  .lineage-thumb-ph {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background: #c8d4e0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 0.8rem;
-    font-weight: 700;
-    color: #3a5a7a;
-    font-family: 'Nunito Sans', system-ui, sans-serif;
-    flex-shrink: 0;
-  }
-  .lname { font-size: 0.85rem; font-weight: 600; color: #003087; }
-  .lyears { font-size: 0.72rem; color: #6b7d8e; font-family: 'Nunito Sans', system-ui, sans-serif; margin-top: 1px; }
-  .lloc { font-size: 0.72rem; color: #4a6a7a; font-family: 'Nunito Sans', system-ui, sans-serif; font-style: italic; margin-top: 1px; }
+  .lineage-card:hover { background: #eef4ff; border-color: #90b8dc; box-shadow: 0 2px 8px rgba(20,50,100,0.08); }
+  .lineage-card.chief-card { background: #eaf0f8; border-color: #a0c0dc; }
+  .lineage-card.chief-card:hover { background: #ddeaf8; border-color: #4d8db8; }
 
-  .no-links { font-size: 0.85rem; color: #9aabb8; font-style: italic; font-family: 'Nunito Sans', system-ui, sans-serif; padding: 4px 0; }
+  .lineage-thumb { width: 38px; height: 38px; border-radius: 50%; object-fit: cover; background: #c8d8e8; flex-shrink: 0; }
+  .lineage-thumb-ph {
+    width: 38px; height: 38px; border-radius: 50%;
+    background: #c8d8e8;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.78rem; font-weight: 700; color: #4a6a8a;
+    font-family: 'Nunito Sans', system-ui, sans-serif; flex-shrink: 0;
+  }
+  .lname { font-size: 0.84rem; font-weight: 600; color: #0e2a52; }
+  .lyears { font-size: 0.7rem; color: #6b7d8e; font-family: 'Nunito Sans', system-ui, sans-serif; margin-top: 1px; }
+  .lloc { font-size: 0.7rem; color: #5a7a8a; font-family: 'Nunito Sans', system-ui, sans-serif; font-style: italic; margin-top: 1px; }
+
+  .no-links { font-size: 0.84rem; color: #a0b0c0; font-style: italic; font-family: 'Nunito Sans', system-ui, sans-serif; padding: 4px 0; }
 
   @media (max-width: 600px) {
     #page-body { padding: 18px 14px; }
-    .card-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px; }
+    .card-grid { grid-template-columns: repeat(auto-fill, minmax(145px, 1fr)); gap: 10px; }
     .modal-header { flex-direction: column; align-items: center; text-align: center; }
   }
 </style>
