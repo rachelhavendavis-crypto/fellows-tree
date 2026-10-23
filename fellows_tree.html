@@ -688,12 +688,13 @@ const people = [
   {id:134, name:"Heather Stiff, MD", years:"2020–2021", supervisor:64, role:"University of Iowa Pediatric Ophthalmology and Strabismus Fellow", location:"Medical College of Wisconsin / Froedtert Hospital, Milwaukee, WI", note:"", photo:"photos/stiff.jpg"},
   {id:135, name:"Guneet Mann, MD", years:"2022–2023", supervisor:64, role:"University of Iowa Pediatric Ophthalmology and Strabismus Fellow", location:"UT Health San Antonio, San Antonio, TX", note:"", photo:"photos/gmann.jpg"},
   {id:136, name:"Margaret Strampe, MD", years:"2023–2024", supervisor:64, role:"University of Iowa Pediatric Ophthalmology and Strabismus Fellow", location:"St. Paul Eye Clinic, St. Paul, MN", note:"", photo:"photos/strampe.jpg"},
-  {id:137, name:"Anne Fulton, MD", years:"1990–2022", supervisor:3, role:"Director, Boston Children's Hospital Ophthalmic Genetics/Inherited Retinal Diseases Fellowship", location:"Boston Children's Hospital, 300 Longwood Ave, Boston, MA 02115", note:"", photo:""},
+  {id:137, name:"Anne Fulton, MD", years:"1990–2024", supervisor:3, role:"Director, Boston Children's Hospital Ophthalmic Genetics/Inherited Retinal Diseases Fellowship", location:"Boston Children's Hospital, 300 Longwood Ave, Boston, MA 02115", note:"", photo:""},
   {id:138, name:"Bahaeddin El Khatib, MD", years:"2023–2024", supervisor:59, role:"Boston Children's Hospital, Pediatric Vitreoretinal Surgery and Ocular Oncology Fellow", location:"", note:"", photo:""},
   {id:139, name:"Osama Sorour, MD", years:"2024–2025", supervisor:59, role:"Boston Children's Hospital, Pediatric Vitreoretinal Surgery and Ocular Oncology Fellow", location:"", note:"", photo:""},
   {id:140, name:"Reem Alahmadi, MD", years:"2025–2026", supervisor:59, role:"Boston Children's Hospital, Pediatric Vitreoretinal Surgery and Ocular Oncology Fellow", location:"", note:"", photo:""},
   {id:141, name:"Krinjeela Bazgain, MD", years:"2026–2027", supervisor:59, role:"Boston Children's Hospital, Pediatric Vitreoretinal Surgery and Ocular Oncology Fellow", location:"", note:"", photo:""},
-  {id:142, name:"Pablo Altschwager Kreft, MD", years:"", supervisor:137, role:"Director, Boston Children's Hospital Ophthalmic Genetics/Inherited Retinal Diseases Fellowship", location:"Boston Children's Hospital, 300 Longwood Ave, Boston, MA 02115", note:"", photo:"photos/altschwager.webp"}
+  {id:142, name:"Pablo Altschwager Kreft, MD", years:"2014–2016", supervisor:137, role:"Director, Boston Children's Hospital Ophthalmic Genetics/Pediatric Medical Retina Fellowship", location:"Boston Children's Hospital, 300 Longwood Ave, Boston, MA 02115", note:"", photo:"photos/altschwager.webp"},
+  {id:143, name:"Laura Bagdonaite-Bejarano, MD", years:"2014–2016", supervisor:137, role:"Boston Children's Hospital, Ophthalmic Genetics/Inherited Retinal Diseases Fellow", location:"", note:"", photo:""}
 ];
 
 const byId = {};
@@ -711,8 +712,8 @@ const fellowshipDirectorYearsMap = {
   45: "2014 – 2021",
   46: "2020 – present",
   59: "2023 – present",
-  137:"1990 – 2022",
-  142:"2023 – present",
+  137:"1990 – 2024",
+  142:"2024 – present",
 };
 
 // Professional profile page URLs by person ID
@@ -924,8 +925,9 @@ const sections = [
   { label: "Trained by Dr. Robb & Dr. Petersen — 1973 to 2002", ids: people.filter(p => p.supervisor === 1).map(p => p.id) },
   { label: "Trained by Dr. Hunter — 2002 to present", ids: people.filter(p => p.supervisor === 3 && !directorIds.includes(p.id)).map(p => p.id) },
   { label: "Pediatric Vitreoretinal Surgery & Ocular Oncology Fellows — trained by Dr. Gonzalez", ids: people.filter(p => p.supervisor === 59).map(p => p.id) },
-  { label: "Ophthalmic Genetics / Inherited Retinal Diseases Fellows — trained by Dr. Fulton", ids: people.filter(p => p.supervisor === 137).map(p => p.id) },
-  { label: "Second-Generation Fellows (trained by Boston Children's Hospital alumni)", ids: people.filter(p => p.supervisor && p.supervisor > 3 && !directorIds.includes(p.id) && p.supervisor !== 59 && p.supervisor !== 137).map(p => p.id), secondGen: true }
+  { label: "Ophthalmic Genetics / Inherited Retinal Diseases Fellows — trained by Dr. Fulton", ids: people.filter(p => p.supervisor === 137 && !directorIds.includes(p.id)).map(p => p.id) },
+  { label: "Ophthalmic Genetics / Pediatric Medical Retina Fellows — trained by Dr. Altschwager Kreft", ids: people.filter(p => p.supervisor === 142 && !directorIds.includes(p.id)).map(p => p.id) },
+  { label: "Second-Generation Fellows (trained by Boston Children's Hospital alumni)", ids: people.filter(p => p.supervisor && p.supervisor > 3 && !directorIds.includes(p.id) && p.supervisor !== 59 && p.supervisor !== 137 && p.supervisor !== 142).map(p => p.id), secondGen: true }
 ];
 
 const grid = document.getElementById('grid-content');
