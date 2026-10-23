@@ -922,11 +922,11 @@ const directorIds = [2, 31, 45, 46, 59, 137, 142];
 const sections = [
   { label: "Ophthalmologist-in-Chief", ids: [1, 3], faculty: true, chiefSection: true },
   { label: "Fellowship Directors", ids: directorIds, faculty: true, directorSection: true },
-  { label: "Trained by Dr. Robb & Dr. Petersen — 1973 to 2002", ids: people.filter(p => p.supervisor === 1).map(p => p.id) },
-  { label: "Trained by Dr. Hunter — 2002 to present", ids: people.filter(p => p.supervisor === 3 && !directorIds.includes(p.id)).map(p => p.id) },
-  { label: "Pediatric Vitreoretinal Surgery & Ocular Oncology Fellows — trained by Dr. Gonzalez", ids: people.filter(p => p.supervisor === 59).map(p => p.id) },
-  { label: "Ophthalmic Genetics / Inherited Retinal Diseases Fellows — trained by Dr. Fulton", ids: people.filter(p => p.supervisor === 137 && !directorIds.includes(p.id)).map(p => p.id) },
-  { label: "Ophthalmic Genetics / Pediatric Medical Retina Fellows — trained by Dr. Altschwager Kreft", ids: people.filter(p => p.supervisor === 142 && !directorIds.includes(p.id)).map(p => p.id) },
+  { label: "Pediatric Ophthalmology & Strabismus Fellowship — Dr. Robb & Dr. Petersen, 1973–2002", ids: people.filter(p => p.supervisor === 1).map(p => p.id) },
+  { label: "Pediatric Ophthalmology & Strabismus Fellowship — Dr. Hunter, 2002–present", ids: people.filter(p => p.supervisor === 3 && !directorIds.includes(p.id)).map(p => p.id) },
+  { label: "Pediatric Vitreoretinal Surgery & Ocular Oncology Fellowship — Dr. Gonzalez, 2023–present", ids: people.filter(p => p.supervisor === 59).map(p => p.id) },
+  { label: "Ophthalmic Genetics / Inherited Retinal Diseases Fellowship — Dr. Fulton, 1990–2024", ids: people.filter(p => p.supervisor === 137 && !directorIds.includes(p.id)).map(p => p.id) },
+  { label: "Ophthalmic Genetics / Pediatric Medical Retina Fellowship — Dr. Altschwager Kreft, 2024–present", ids: people.filter(p => p.supervisor === 142 && !directorIds.includes(p.id)).map(p => p.id) },
   { label: "Second-Generation Fellows (trained by Boston Children's Hospital alumni)", ids: people.filter(p => p.supervisor && p.supervisor > 3 && !directorIds.includes(p.id) && p.supervisor !== 59 && p.supervisor !== 137 && p.supervisor !== 142).map(p => p.id), secondGen: true }
 ];
 
