@@ -913,8 +913,8 @@ function getTrainers(id) {
     result.push(cur.supervisor);
     cur = byId[cur.supervisor];
   }
-  // Exclude Petersen (id=2) — he is Fellowship Director, not Ophthalmologist-in-Chief
-  return result.filter(rid => rid !== 2);
+  // Return only Ophthalmologists-in-Chief (Robb=1, Hunter=3); all others are Fellowship Directors
+  return result.filter(rid => rid === 1 || rid === 3);
 }
 
 // Sections to render
